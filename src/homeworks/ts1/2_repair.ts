@@ -1,7 +1,7 @@
 /**
  * Здесь код с ошибками типов. Нужно их устранить
  * */
-
+//
 // // Мы это не проходили, но по тексту ошибки можно понять, как это починить
 // export const getFakeApi = async (): void => {
 //   const result = await fetch('https://jsonplaceholder.typicode.com/todos/1').then((response) => response.json());
