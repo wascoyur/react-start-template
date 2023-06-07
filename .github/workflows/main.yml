@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [18.x]
 
     steps:
       - uses: actions/checkout@v3
@@ -34,7 +34,7 @@ jobs:
 
       # Публикуем приложение на Github Pages
       - name: Deploy to Github Pages
-        uses: JamesIves/github-pages-deploy-action@4
+        uses: JamesIves/github-pages-deploy-action@4.2.1
         with:
           branch: gh-pages
           BUILD_PATH: ./dist
@@ -45,7 +45,7 @@ jobs:
 
       # Публикуем Storybook на Github Pages
       - name: Deploy Storybook to Github Pages
-        uses: JamesIves/github-pages-deploy-action@4
+        uses: JamesIves/github-pages-deploy-action@4.2.1
         with:
           branch: gh-pages
           BUILD_PATH: ./storybook-static
