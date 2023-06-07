@@ -2,7 +2,7 @@ name: Test, Lint, Build and Deploy on Github Pages
 
 on:
   push:
-    branches: ["main", "origin/main"]
+    branches: ["main"]
 
 jobs:
   build-and-deploy:
@@ -22,18 +22,15 @@ jobs:
 
       # Устанавливаем зависимости
       - name: Install dependencies
-          run: |
-            npm install
+        run: npm install
 
       # Запускаем тесты и линтер
       - name: Run tests and linter
-        run: |
-          npm run lint && npm test
+        run: npm run lint && npm test
 
       # Собираем приложение
       - name: Build Application
-        run: |
-          npm run build
+        run: npm run build
 
       # Публикуем приложение на Github Pages
       - name: Deploy to Github Pages
@@ -44,8 +41,7 @@ jobs:
 
       # Собираем Storybook
       - name: Build Storybook
-        run: |
-          npm run build-storybook
+        run: npm run build-storybook
 
       # Публикуем Storybook на Github Pages
       - name: Deploy Storybook to Github Pages
