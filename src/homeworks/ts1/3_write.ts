@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import { getData } from 'src/mock-data/mock-products';
 
 /**
@@ -8,7 +9,7 @@ type Category = {
   name: string;
   photo?: string;
 };
-type Product = Partial<Category> & {
+type Product = Category & {
   desc?: string;
   createdAt: string;
   oldPrice?: number;
@@ -16,7 +17,7 @@ type Product = Partial<Category> & {
   category: Category;
 };
 type Cost = Category &
-  Pick<Product, 'createdAt'> & {
+  Pick<Product, 'createdAt' | 'desc'> & {
     amount: number;
     category: Category;
     readonly type: 'Cost';
@@ -24,7 +25,7 @@ type Cost = Category &
 type Profit = Exclude<Cost, 'type'> & {
   readonly type: 'Profit';
 };
-
+type Operation = Pick<Profit, 'type'> | Pick<Cost, 'type'>;
 /**
  * Нужно создать тип Category, он будет использоваться ниже.
  * Категория содержит
@@ -84,9 +85,8 @@ type fakeProduct = {
   };
 };
 
-const getRandomProducts = (count = 1) => {
-  const products = getData() as unknown as fakeProduct[];
-  return products;
+const getRandomProducts = () => {
+  return getData() as unknown as fakeProduct[];
 };
 
 export const createRandomProduct = (createdAt: string) => {
@@ -114,4 +114,48 @@ export const createRandomProduct = (createdAt: string) => {
  * Создает случайную операцию (Operation).
  * Принимает дату создания (строка)
  * */
-// export const createRandomOperation = (createdAt: string) => {};
+export const createRandomOperation = (createdAt: string): Operation => {
+  const getRandomCategory = (): Category => {
+    // Генерация случайной категории (здесь вам нужно реализовать свою логику получения случайной категории)
+    const categories: Category[] = [
+      { id: '1', name: 'Category 1' },
+      { id: '2', name: 'Category 2' },
+      { id: '3', name: 'Category 3' },
+      { id: '3', name: 'Category 4' },
+    ];
+    const randomIndex = Math.floor(Math.random() * categories.length);
+    return categories[randomIndex];
+  };
+
+  const getRandomAmount = (): number => {
+    // Генерация случайного значения amount (здесь вам нужно реализовать свою логику генерации случайного значения)
+    return Math.floor(Math.random() * 100);
+  };
+
+  const getRandomType = (): 'Cost' | 'Profit' => {
+    // Генерация случайного типа ('Cost' или 'Profit')
+    return Math.random() > 0.5 ? 'Profit' : 'Cost';
+  };
+
+  const operations: Operation[] = [];
+
+  for (let i = 0; i < 3; i++) {
+    const category = getRandomCategory();
+    const amount = getRandomAmount();
+    const type = getRandomType();
+
+    const operation: Operation = {
+      type,
+      id: category.id,
+      name: category.name,
+      amount,
+      category,
+      createdAt: createdAt,
+      desc: 'description',
+    } as Operation;
+
+    operations.push(operation);
+  }
+
+  return operations[0];
+};
