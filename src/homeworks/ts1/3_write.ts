@@ -156,6 +156,7 @@ export const createRandomOperation = (createdAt: string): Operation => {
 
     operations.push(operation);
   }
+  const operationIdx = Math.floor(Math.random() * operations.length);
 
-  return operations[0];
+  return operations[operationIdx];
 };
