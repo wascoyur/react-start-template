@@ -54,7 +54,8 @@ export const hex2rgb = (color: string) => {
   return [red, green, blue];
 };
 
-export const getNumberedArray = (arr: []) => arr.map((value, number) => ({ value, number }));
+type typeNumberedArray = (arg: []) => { value: never; number: number }[];
+export const getNumberedArray: typeNumberedArray = (arr: []) => arr.map((value, number) => ({ value, number }));
 export const toStringArray = (arr: { value: string; number: string }[]) =>
   arr.map(({ value, number }) => `${value}_${number}`);
 
