@@ -12,7 +12,10 @@ type Category = {
   name: string;
   photo?: string;
 };
-type Product = Category & {
+type Product = {
+  id: string;
+  name: string;
+  photo?: string;
   desc?: string;
   createdAt: string;
   oldPrice?: number;
