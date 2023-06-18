@@ -7,6 +7,7 @@ const port = 2233;
 const dist = path.join(__dirname, 'dist');
 const src = path.join(__dirname, 'src');
 const host = 'localhost';
+let mode = 'production';
 
 module.exports = {
   entry: './index.tsx',
@@ -27,7 +28,7 @@ module.exports = {
   },
   output: {
     path: dist,
-    publicPath: `http://${host}:${port}/`,
+    publicPath: mode === `development` ? `http://${host}:${port}/` : `https://wascoyur.github.io/react-start-template/`,
     filename: `js/[name].js`,
     chunkFilename: `js/[name].js`,
   },
