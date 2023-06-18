@@ -22,13 +22,22 @@ type Product = {
   price: number;
   category: Category;
 };
-type Cost = Category &
-  Pick<Product, 'createdAt' | 'desc'> & {
-    amount: number;
-    category: Category;
-    readonly type: 'Cost';
-  };
-type Profit = Exclude<Cost, 'type'> & {
+type Cost = {
+  id: string;
+  name: string;
+  desc?: string;
+  createdAt: string;
+  amount: number;
+  category: Category;
+  readonly type: 'Cost';
+};
+type Profit = {
+  id: string;
+  name: string;
+  desc?: string;
+  createdAt: string;
+  amount: number;
+  category: Category;
   readonly type: 'Profit';
 };
 type Operation = Pick<Profit, 'type'> | Pick<Cost, 'type'>;
