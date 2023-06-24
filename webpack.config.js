@@ -65,7 +65,7 @@ module.exports = (_, args) => {
           test: /\.svg/,
           type: 'asset/inline',
         },
-        {
+        /*{
           test: /\.s[ac]ss$/i,
           use: [
             {
@@ -81,6 +81,10 @@ module.exports = (_, args) => {
             },
             'sass-loader',
           ],
+        },*/
+        {
+          test: /\.scss$/,
+          use: ['style-loader', 'css-loader', 'sass-loader'],
         },
       ],
     },

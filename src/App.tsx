@@ -1,16 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import './components/modal/Modal-window.scss';
+import { ModalWindow } from './components/modal/ModalWindow';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </header>
+      <ModalWindow
+        onClick={() => {
+          console.log(`click`);
+        }}
+        visible={true}
+      >
+        some text inside modal window
+      </ModalWindow>
     </div>
   );
 }
