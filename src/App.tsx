@@ -1,22 +1,27 @@
 import React, { useState } from 'react';
 import './App.scss';
 import './components/modal/Modal-window.scss';
-import { ModalWindow } from './components/modal/ModalWindow';
+import ModalWindow from './components/modal/ModalWindow';
+import { Header } from './components/header/Header';
+import { Logo } from './components/logo/Logo';
+import { Layout } from './components/layout/Layout';
 
 function App() {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   return (
     <div className="App">
-      <button onClick={() => setIsVisible(true)}> Show modal</button>
+      <Header>
+        <Logo />
+      </Header>
+      <Layout>
+        <button onClick={() => setIsVisible(true)}> Show modal</button>
+      </Layout>
       <ModalWindow
         onClick={() => {
           setIsVisible((v) => !v);
-          console.log(`click`);
         }}
         visible={isVisible}
-      >
-        <div>some text inside modal window</div>
-      </ModalWindow>
+      ></ModalWindow>
     </div>
   );
 }
