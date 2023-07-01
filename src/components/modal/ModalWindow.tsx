@@ -2,14 +2,13 @@ import React from 'react';
 import './Modal-window.scss';
 import ReactDOM from 'react-dom';
 
-type Props = {
+export type ModalProps = {
   onClick: () => void;
   visible: boolean;
   children?: React.ReactNode;
-  pp?: React.ReactNode;
 };
 
-const ModalWindow = (props: Props) => {
+const ModalWindow = (props: ModalProps) => {
   const { children, onClick, visible } = props;
   const modal = () => {
     return (
@@ -20,7 +19,7 @@ const ModalWindow = (props: Props) => {
               X
             </div>
           </div>
-          {children}
+          {children ? children : <div>Что-то произошло...</div>}
         </div>
       </div>
     );
@@ -29,4 +28,4 @@ const ModalWindow = (props: Props) => {
   return visible ? ReactDOM.createPortal(modal(), document.getElementById('modal') as HTMLElement) : children;
 };
 
-export { ModalWindow };
+export default ModalWindow;

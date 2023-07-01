@@ -22,14 +22,13 @@
         padding: 0 0.5rem 0.5rem 0.5rem;
 
         .close-wrapper{
-            display: grid;
-            justify-content: end;
-
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
             .close-icon{
-                display: grid;
-                align-items: end;
+                position: relative;
+                right: -25px;
                 width: 13px;
-                padding:0.25rem ;
                 cursor: pointer;
             }
 
