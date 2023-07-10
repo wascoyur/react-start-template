@@ -15,7 +15,10 @@
         "plugin:jest/recommended",
         "eslint:recommended",
         "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript"
     ],
     "overrides": [],
     "parser": "@typescript-eslint/parser",
@@ -37,14 +40,22 @@
         "react": {
             "version": "detect"
         },
+        "import/parsers": {
+            "@typescript-eslint/parser": [".ts", ".tsx"]
+        },
         "import/resolver": {
             "node": {
+                "paths": ["src"],
                 "extensions": [
                     ".js",
                     ".jsx",
                     ".ts",
                     ".tsx"
                 ]
+            },
+            "typescript": {
+                "alwaysTryTypes": true,
+                "project": "./" // Specify the path to your tsconfig.json file
             }
         }
     }
