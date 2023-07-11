@@ -1,0 +1,56 @@
+.productCard {
+    display: grid;
+    grid-template-columns: 100px 1fr repeat(3, 50px) 45px;
+    align-items: center;
+    gap: 16px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.preview {
+    max-width: 100%;
+    margin: 0;
+}
+
+.productInfo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    gap: 8px;
+}
+
+.title {
+    font: 400 14px sans-serif;
+    color: #242424;
+    margin: 0;
+}
+
+.description {
+    font: 400 14px sans-serif;
+    color: #9d9da5;
+    margin: 0;
+}
+
+.count,
+.price,
+.total {
+    font: 400 18px sans-serif;
+    color: #242424;
+    text-align: center;
+    margin: 0;
+}
+
+.total {
+    font-weight: 700;
+}
+
+.title,
+.description,
+.count,
+.price,
+.total {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
