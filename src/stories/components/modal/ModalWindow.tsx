@@ -6,10 +6,11 @@ export type ModalProps = {
   onClick: () => void;
   visible: boolean;
   children?: React.ReactNode;
+  modalContent?: React.ReactNode;
 };
 
 const ModalWindow = (props: ModalProps) => {
-  const { children, onClick, visible } = props;
+  const { children, onClick, visible, modalContent } = props;
   const modal = () => {
     return (
       <div className="modal-layout">
@@ -19,13 +20,14 @@ const ModalWindow = (props: ModalProps) => {
               X
             </div>
           </div>
-          {children ? children : <div>Что-то произошло...</div>}
+          {<div className="content">{modalContent}</div>}
         </div>
       </div>
     );
   };
+  const root = document.body as HTMLElement;
 
-  return visible ? ReactDOM.createPortal(modal(), document.getElementById('modal') as HTMLElement) : children;
+  return visible && root ? ReactDOM.createPortal(modal(), root) : children;
 };
 
 export default ModalWindow;
