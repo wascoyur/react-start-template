@@ -1,6 +1,6 @@
-import ModalWindow from './components/modal/ModalWindow';
+import ModalWindow, { ModalProps } from './components/modal/ModalWindow';
 import { Button } from './components/button/Button';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './components/modal/Modal-window.scss';
 import './components/index.scss';
 
@@ -9,7 +9,7 @@ export default {
   component: ModalWindow,
 };
 
-export const ModalWindowS = (props: React.ReactNode) => {
+export const ModalWindowS = (props: ModalProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [modalContent, setModalContent] = useState('');
   const { children } = props;

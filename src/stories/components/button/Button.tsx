@@ -8,6 +8,7 @@ interface ButtonProps {
   backgroundColor?: string | null;
   size?: string;
   label: string;
+  onClick?: () => void;
 }
 /**
  * Primary UI component for user interaction

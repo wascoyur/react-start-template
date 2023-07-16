@@ -10,7 +10,7 @@ export type ModalProps = {
 };
 
 const ModalWindow = (props: ModalProps) => {
-  const { children, onClick, visible, modalContent } = props;
+  const { children, onClick, visible, modalContent = `Something happend...` } = props;
   const modal = () => {
     return (
       <div className="modal-layout">
