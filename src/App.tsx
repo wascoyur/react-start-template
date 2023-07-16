@@ -1,37 +1,23 @@
 import React, { useState } from 'react';
-import './App.scss';
-import './components/modal/Modal-window.scss';
-import ModalWindow from './components/modal/ModalWindow';
-import { Header } from './components/header/Header';
-import { Layout } from './components/layout/Layout';
-import { InCartButton } from './components/in-cart-button/InCartButton';
-import { product, ProductCard } from './components/cards-product/ProductCard';
+import './components/themeSwitcher/App.scss';
+import './components/themeSwitcher/theme-dark.scss';
+import { ThemeSwitcher } from 'src/components/themeSwitcher/ThemeSwitcher';
+import { ThemeContext } from 'src/components/themeSwitcher/ThemeContext';
+import classNames from 'classnames';
 
 function App() {
-  const [isVisible, setIsVisible] = useState(false);
-  const tmpProduct: product = {
-    id: 1,
-    img_url: '',
-    price: 100,
-    title: 'какой-то продукт',
-    description: 'Непонятное описание',
+  const [theme, setCurrentTheme] = useState<'light' | 'dark'>('light');
+
+  const setTheme = (arg: 'light' | 'dark') => {
+    setCurrentTheme(arg);
   };
+
   return (
-    <div className="App">
-      <Header></Header>
-      <Layout>
-        <button onClick={() => setIsVisible(true)}> Show modal</button> <br />
-        <br />
-        <InCartButton />
-        <ProductCard {...tmpProduct} />
-      </Layout>
-      <ModalWindow
-        onClick={() => {
-          setIsVisible((v) => !v);
-        }}
-        visible={isVisible}
-      ></ModalWindow>
-    </div>
+    <ThemeContext.Provider value={{ currentTheme: theme, togglerTheme: setTheme }}>
+      <div className={classNames(theme === 'dark' ? 'App-theme-dark' : 'App-theme-light')}>
+        <ThemeSwitcher />
+      </div>
+    </ThemeContext.Provider>
   );
 }
 
