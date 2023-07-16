@@ -5,4 +5,4 @@ export default {
   component: Logo,
 };
 
-export const Default = () => <Logo />;
+export const LogoS = () => <Logo />;
