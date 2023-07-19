@@ -20,7 +20,7 @@ const ModalWindow = (props: ModalProps) => {
               X
             </div>
           </div>
-          {<div className="content">{modalContent}</div>}
+          {<div className="content">{modalContent || <div>Поле ввода пустое...</div>}</div>}
         </div>
       </div>
     );
