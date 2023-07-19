@@ -11,8 +11,9 @@ export default {
 export const DefaultHeader = () => {
   return (
     <header className="header">
-      <Logo />
-      <div className="header-content"></div>
+      <div className="header-content">
+        <Logo />
+      </div>
     </header>
   );
 };
