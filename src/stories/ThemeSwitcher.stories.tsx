@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import './components/themeSwitcher/App.scss';
 import './components/themeSwitcher/theme-dark.scss';
 import { Header } from './components/header/Header';
+
 export default {
   title: 'Переключатель темы',
   component: ThemeSwitcher,
