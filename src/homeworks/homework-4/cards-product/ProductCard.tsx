@@ -1,7 +1,7 @@
 import React from 'react';
-import './product-card.scss';
-import productImage from '../../stories/assets/products/card-img.jpg';
+import productImage from '../../../stories/assets/products/card-img.jpg';
 import { InCartButton } from '../in-cart-button/InCartButton';
+import './product-card.scss';
 
 export type product = {
   id: number;

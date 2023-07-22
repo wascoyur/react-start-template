@@ -1,6 +1,6 @@
 import React from 'react';
-import './Modal-window.scss';
 import ReactDOM from 'react-dom';
+import './Modal-window.scss';
 
 export type ModalProps = {
   onClick: () => void;

@@ -2,8 +2,8 @@ import classNames from 'classnames';
 import React, { useContext } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { LanguageContext } from 'src/components/localization/LangContext';
-import { Locale } from 'src/components/localization/settings';
+import { LanguageContext } from 'src/homeworks/homework-4/localization/LangContext';
+import { Locale } from 'src/homeworks/homework-4/localization/settings';
 
 export type ThemeSwitcherProps = {
   className?: string;
