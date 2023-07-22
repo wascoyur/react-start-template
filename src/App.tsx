@@ -1,18 +1,15 @@
 import React from 'react';
-import { Header } from 'src/homeworks/homework-4/header/Header';
-import { LanguageContext, typeLangContext } from 'src/homeworks/homework-4/localization/LangContext';
-import { ChangeLang, LangSwitcher } from 'src/homeworks/homework-4/localization/LangSwitcher';
+import logo from './logo.svg';
+import './App.css';
 
 function App() {
-  const { i18n } = ChangeLang();
   return (
-    <LanguageContext.Provider
-      value={{ language: i18n.language, languageSwitcher: i18n.changeLanguage } as typeLangContext}
-    >
-      <Header>
-        <LangSwitcher />
-      </Header>
-    </LanguageContext.Provider>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>powered by yuriy.vasilev</p>
+      </header>
+    </div>
   );
 }
 
