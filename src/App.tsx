@@ -1,14 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ProductList } from 'src/homeworks/homework-5/ProductList';
+import { createRandomProduct } from 'src/homeworks/ts1/3_write';
 
 function App() {
+  const mockProducts = () => {
+    const mockProd = [];
+    for (let i = 1; i <= 5; i++) {
+      mockProd.push(createRandomProduct(i.toString()));
+    }
+    return mockProd;
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>powered by yuriy.vasilev</p>
-      </header>
+      <ProductList products={mockProducts()} />
     </div>
   );
 }
