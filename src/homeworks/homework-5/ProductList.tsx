@@ -15,11 +15,7 @@ export const ProductList: React.FC<typeProductList> = (props) => {
 
   const ListItems = () => {
     return productList.products.map((product) => {
-      return (
-        <div key={product.createdAt}>
-          <ProductItem itemClssNames={itemClssNames} item={product} />
-        </div>
-      );
+      return <ProductItem itemClssNames={itemClssNames} item={product} key={product.createdAt} />;
     });
   };
 
