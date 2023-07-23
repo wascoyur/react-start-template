@@ -85,7 +85,7 @@ type Operation = Pick<Profit, 'type'> | Pick<Cost, 'type'>;
  * */
 
 /**
-  https://fakestoreapi.com/products/?limit=$
+ https://fakestoreapi.com/products/?limit=$
  * */
 type fakeProduct = {
   id: string;
