@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import classNames from 'classnames';
+import React, { FC, useEffect, useState } from 'react';
 import { Product } from 'src/homeworks/ts1/3_write';
+import './product-list.scss';
 
-type typeProductList = { products: Array<Product> };
+type typeProductList = { products: Array<Product>; listClssNames?: string; itemClssNames?: string };
 
 export const ProductList: React.FC<typeProductList> = (props) => {
-  const { products } = props;
+  const { products, listClssNames = 'product-list', itemClssNames = 'product-item' } = props;
 
   const [productList, setProductList] = useState<typeProductList>({ products: [] });
   useEffect(() => {
@@ -14,27 +16,27 @@ export const ProductList: React.FC<typeProductList> = (props) => {
   const ListItems = () => {
     return productList.products.map((product) => {
       return (
-        <ProductItem
-          key={product.id}
-          category={product.category}
-          createdAt={product.createdAt}
-          id={product.id}
-          name={product.name}
-          price={product.price}
-        />
+        <div key={product.createdAt}>
+          <ProductItem itemClssNames={itemClssNames} item={product} />
+        </div>
       );
     });
   };
 
   const EmptyList = () => <div>No Products</div>;
-  return <div>{productList.products.length ? <ListItems /> : <EmptyList />}</div>; // Use 'productList.products.length' instead of 'props.length'
+  return <div className={classNames(listClssNames)}>{productList.products.length ? <ListItems /> : <EmptyList />}</div>;
 };
 
-export const ProductItem = (props: Product) => {
-  const { name, price } = props;
+type typeProductItem = { item: Product; itemClssNames?: string };
+
+export const ProductItem: FC<typeProductItem> = (props) => {
+  const {
+    item: { name, price },
+    itemClssNames = 'product-item',
+  } = props;
   return (
-    <div>
-      <h3>{name}</h3>
+    <div className={classNames(itemClssNames)}>
+      <h4>{name}</h4>
       <p>Price: {price}</p>
     </div>
   );
