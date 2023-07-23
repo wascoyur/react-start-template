@@ -1,34 +1,16 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
+import styles from './Button.module.css';
 import cn from 'clsx';
-import { sum } from './sum';
-import './button.css';
 
 interface ButtonProps {
-  primary?: boolean;
-  backgroundColor?: string | null;
-  size?: string;
-  label: string;
+  onClick: () => void;
+  children: ReactNode;
 }
-/**
- * Primary UI component for user interaction
- */
 
-export const Button: FC<ButtonProps> = ({ primary, backgroundColor, size, label, ...props }) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
-
-  const onClick = () => {
-    sum(4, 5);
-  };
-
+export const Button: FC<ButtonProps> = ({ onClick, children }) => {
   return (
-    <button
-      type="button"
-      className={cn('storybook-button', `storybook-button--${size}`, mode)}
-      style={{ backgroundColor: backgroundColor || 'green' }}
-      onClick={onClick}
-      {...props}
-    >
-      {label}
+    <button className={cn(styles.button)} onClick={onClick}>
+      {children}
     </button>
   );
 };
