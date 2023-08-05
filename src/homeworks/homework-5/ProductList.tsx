@@ -3,7 +3,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { Product } from 'src/homeworks/ts1/3_write';
 import './product-list.scss';
 
-type typeProductList = { products: Array<Product>; listClssNames?: string; itemClssNames?: string };
+export type typeProductList = { products: Array<Product>; listClssNames?: string; itemClssNames?: string };
 
 export const ProductList: React.FC<typeProductList> = (props) => {
   const { products, listClssNames = 'product-list', itemClssNames = 'product-item' } = props;
@@ -23,7 +23,7 @@ export const ProductList: React.FC<typeProductList> = (props) => {
   return <div className={classNames(listClssNames)}>{productList.products.length ? <ListItems /> : <EmptyList />}</div>;
 };
 
-type typeProductItem = { item: Product; itemClssNames?: string };
+export type typeProductItem = { item: Product; itemClssNames?: string };
 
 export const ProductItem: FC<typeProductItem> = (props) => {
   const {

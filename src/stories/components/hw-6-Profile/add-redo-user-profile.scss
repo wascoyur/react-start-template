@@ -1,0 +1,35 @@
+.default-style {
+    display: grid;
+    place-content: center;
+    justify-items: center;
+
+
+    .profile-block {
+        margin: 0.5rem 0.25rem;
+        font-size: 2rem;
+    }
+
+    form {
+        display: grid;
+        grid-template-columns:1fr;
+
+        > * {
+            margin: 0.25rem;
+        }
+
+        input {
+            border-radius: 0.35rem;
+        }
+
+        textarea {
+            min-width: 20rem;
+            min-height: 3rem;
+            border-radius: 0.35rem
+        }
+
+        button {
+            max-width: 6rem;
+            border-radius: 0.35rem;
+        }
+    }
+}
