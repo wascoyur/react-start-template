@@ -3,10 +3,10 @@ import { useFormik } from 'formik';
 import './add-redo-user-profile.scss';
 
 export type typeUserForm = {
-  profileStyle?: string[];
+  customStyle?: string[];
 };
 export const AddRedoUserForm = (props: typeUserForm) => {
-  const { profileStyle = 'default-style' } = props;
+  const { customStyle = 'default-style' } = props;
   const formik = useFormik({
     initialValues: {
       useralias: '',
@@ -17,7 +17,7 @@ export const AddRedoUserForm = (props: typeUserForm) => {
     },
   });
   return (
-    <div className={classNames(profileStyle)}>
+    <div className={classNames(customStyle)}>
       <div className="profile-block">Изменить профиль</div>
       <form onSubmit={formik.handleSubmit}>
         <label htmlFor="useralias">Псевдоним</label>

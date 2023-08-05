@@ -19,10 +19,11 @@
 
         input {
             border-radius: 0.35rem;
+            padding: 0.25rem;
         }
 
         textarea {
-            min-width: 20rem;
+            min-width: 15rem;
             min-height: 3rem;
             border-radius: 0.35rem
         }
@@ -30,6 +31,9 @@
         button {
             max-width: 6rem;
             border-radius: 0.35rem;
+            padding: 0.2rem;
         }
+
+
     }
 }
