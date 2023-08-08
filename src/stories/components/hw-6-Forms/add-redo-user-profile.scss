@@ -4,7 +4,7 @@
     justify-items: center;
 
 
-    .profile-block {
+    .title-forms {
         margin: 0.5rem 0.25rem;
         font-size: 2rem;
     }
@@ -43,6 +43,15 @@
         .input-error {
             border-color: red;
 
+        }
+
+        .product-image {
+            max-width: 20rem;
+
+            img {
+                width: 300px;
+                height: 300px;
+            }
         }
     }
 }

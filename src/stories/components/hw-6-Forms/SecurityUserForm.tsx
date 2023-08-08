@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { FormikErrors, useFormik } from 'formik';
-import { propsUserForm } from 'src/stories/components/hw-6-Profile/AddRedoUserForm';
+import { propsShareForm } from 'src/stories/components/hw-6-Forms/AddRedoUserForm';
 import './add-redo-user-profile.scss';
 
 type userSecurity = {
@@ -8,7 +8,7 @@ type userSecurity = {
   newpassword: string;
   repeatpassword: string;
 };
-export const SecurityUserForm = (props: propsUserForm) => {
+export const SecurityUserForm = (props: propsShareForm) => {
   const { customStyle = 'default-style' } = props;
   const validate = (values: userSecurity) => {
     let errors: FormikErrors<userSecurity> = {};
@@ -73,7 +73,7 @@ export const SecurityUserForm = (props: propsUserForm) => {
   });
   return (
     <div className={classNames(customStyle)}>
-      <div className="profile-block">Изменить пароль</div>
+      <div className="title-forms">Изменить пароль</div>
       <form onSubmit={formik.handleSubmit}>
         <label htmlFor="currentpassword">Текущий пароль</label>
         <input

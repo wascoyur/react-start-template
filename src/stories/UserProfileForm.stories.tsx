@@ -1,6 +1,6 @@
 import React from 'react';
-import { AddRedoUserForm } from './components/hw-6-Profile/AddRedoUserForm';
-import { SecurityUserForm } from './components/hw-6-Profile/SecurityUserForm';
+import { AddRedoUserForm } from './components/hw-6-Forms/AddRedoUserForm';
+import { SecurityUserForm } from './components/hw-6-Forms/SecurityUserForm';
 import { Divider } from './components/share/Divider';
 
 export default {

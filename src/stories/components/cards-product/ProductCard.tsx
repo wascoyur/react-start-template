@@ -1,25 +1,19 @@
 import React from 'react';
-import './product-card.scss';
-import productImage from '../../assets/products/card-img.jpg';
+import mockImage from '../../assets/products/card-img.jpg';
 import { InCartButton } from '../in-cart-button/InCartButton';
+import './product-card.scss';
 
-export type product = {
+export type TypeProduct = {
   id: number;
-  title: React.ReactNode;
+  title: React.ReactNode | string;
   category?: string;
-  description: React.ReactNode;
+  description: React.ReactNode | string;
   img_url: string;
   price: number;
 };
-export const ProductCard = (props: product) => {
+export const ProductCard = (props: TypeProduct) => {
   const { description, img_url, id, title, price, category } = props;
-  const ProductImage = () => {
-    return (
-      <div className="product-image">
-        <img src={img_url || productImage} alt={'product'} />
-      </div>
-    );
-  };
+
   const Title = () => {
     return <div className="product-card-title">{title || `The Title product`}</div>;
   };
@@ -38,7 +32,7 @@ export const ProductCard = (props: product) => {
   return (
     <div className="product-card">
       <Title />
-      <ProductImage />
+      <ProductImage img_url={mockImage} />
       <div className="product-info-wrapper">
         <Category />
         <Description />
@@ -47,6 +41,13 @@ export const ProductCard = (props: product) => {
           <InCartButton />
         </div>
       </div>
+    </div>
+  );
+};
+export const ProductImage = (props: { img_url: string }) => {
+  return (
+    <div className="product-image">
+      <img src={props.img_url} alt={'product'} />
     </div>
   );
 };

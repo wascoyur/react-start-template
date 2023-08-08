@@ -2,14 +2,14 @@ import classNames from 'classnames';
 import { FormikErrors, useFormik } from 'formik';
 import './add-redo-user-profile.scss';
 
-export type propsUserForm = {
+export type propsShareForm = {
   customStyle?: string[];
 };
 export type PrfileForm = {
   useralias: string;
   about: string;
 };
-export const AddRedoUserForm = (props: propsUserForm) => {
+export const AddRedoUserForm = (props: propsShareForm) => {
   const { customStyle = 'default-style' } = props;
   const validate = (values: PrfileForm) => {
     const errors: FormikErrors<PrfileForm> = {};
@@ -33,7 +33,7 @@ export const AddRedoUserForm = (props: propsUserForm) => {
   });
   return (
     <div className={classNames(customStyle)}>
-      <div className="profile-block">Изменить профиль</div>
+      <div className="title-forms">Изменить профиль</div>
       <form onSubmit={formik.handleSubmit}>
         <label htmlFor="useralias">Псевдоним</label>
         <input
