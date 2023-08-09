@@ -266,17 +266,9 @@ export const getData = () => {
   return data;
 };
 export type mockProductGen = {
-  count: number;
   currentListProducts: Array<Product>;
-  setNewProducts: (arg: Array<Product>) => void;
 };
-export const arrayMockProductsGenerate = (props: mockProductGen) => {
-  const { count = 1, currentListProducts, setNewProducts } = props;
-  const mockProd: Array<Product> = [...new Set(currentListProducts)];
-
-  for (let i = 0; i <= count; i++) {
-    mockProd.push(createRandomProduct(Date.now().toString()));
-  }
-  const res = [...new Set(mockProd)];
-  setNewProducts(res);
+export const arrayMockProductsGenerate = () => {
+  const res: Array<Product> = [createRandomProduct(Date.now().toString())];
+  return res;
 };

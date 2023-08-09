@@ -6,8 +6,10 @@ import { arrayMockProductsGenerate } from 'src/mock-data/mock-products';
 function App() {
   const [products, setProducts] = useState<Array<Product> | undefined>();
 
-  const addMockProduct = (count?: number) => {
-    arrayMockProductsGenerate({ count: 0, currentListProducts: products, setNewProducts: setProducts });
+  const addMockProduct = () => {
+    const newProduct = arrayMockProductsGenerate();
+    const newList = products ? [...products, ...newProduct] : [...newProduct];
+    setProducts(newList);
   };
 
   return (
