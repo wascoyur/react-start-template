@@ -1,17 +1,17 @@
 import React from 'react';
-import { AddRedoUserForm } from './components/hw-6-Forms/AddRedoUserForm';
+import { RedoUserProfileForm } from './components/hw-6-Forms/RedoUserProfileForm';
 import { SecurityUserForm } from './components/hw-6-Forms/SecurityUserForm';
 import { Divider } from './components/share/Divider';
 
 export default {
   title: 'Форма редактирования профиля пользователя',
-  component: AddRedoUserForm,
+  component: RedoUserProfileForm,
 };
 
 export const AddRedoUserFormS = () => {
   return (
     <>
-      <AddRedoUserForm />
+      <RedoUserProfileForm />
       <Divider />
       <SecurityUserForm />
     </>

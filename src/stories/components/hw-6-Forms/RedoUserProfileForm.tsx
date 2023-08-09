@@ -8,8 +8,11 @@ export type propsShareForm = {
 export type PrfileForm = {
   useralias: string;
   about: string;
+  email: string;
+  password: string;
+  repeatpassword?: string;
 };
-export const AddRedoUserForm = (props: propsShareForm) => {
+export const RedoUserProfileForm = (props: propsShareForm) => {
   const { customStyle = 'default-style' } = props;
   const validate = (values: PrfileForm) => {
     const errors: FormikErrors<PrfileForm> = {};
@@ -25,6 +28,8 @@ export const AddRedoUserForm = (props: propsShareForm) => {
     initialValues: {
       useralias: '',
       about: '',
+      email: '',
+      password: '',
     },
     onSubmit: (values) => {
       console.log(JSON.stringify(values, null, 2));
