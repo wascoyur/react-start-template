@@ -1,10 +1,19 @@
 import React from 'react';
-import { ProfileScreen } from 'src/homeworks/homework-6/ProfileScreen';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { ErrorPage } from 'src/pages/error-page';
+import { Layout } from 'src/stories/components/layout/Layout';
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Layout />,
+      errorElement: <ErrorPage />,
+    },
+  ]);
   return (
     <div className="App">
-      <ProfileScreen />
+      <RouterProvider router={router} />
     </div>
   );
 }
