@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: start;
-    height: 50px;
+    height: 3rem;
     width: auto;
     position: sticky;
     top: 0;
@@ -15,5 +15,16 @@
         align-items: center;
         justify-content: space-between;
         width: 98%;
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .active-link {
+            margin-bottom: 1rem;
+            border-bottom: 0.1rem solid;
+            font-weight: bold;
+        }
     }
 }

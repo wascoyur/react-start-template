@@ -1,6 +1,13 @@
-.layout{
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(250, 235, 215, 0.31);
-    padding: 0.5em;
+
+main {
+    .active-link {
+        color: blue;
+    }
 }
+
+footer {
+    flex: 0 0 auto;
+    height: 2rem;
+    border: 1px solid;
+}
+

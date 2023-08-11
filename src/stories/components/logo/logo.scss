@@ -1,8 +1,16 @@
-.logo{
+.logo {
     border-radius: 50%;
     background-color: beige;
     height: 40px;
     width: 40px;
     border: #e7fdd8 1px solid;
     margin-left: 2em;
+    overflow: hidden;
+
+    img {
+        width: 100%; // Заполнить всю доступную ширину
+        height: auto; // Автоматическая высота, чтобы сохранить пропорции
+        display: block;
+        object-fit: cover;
+    }
 }
