@@ -1,9 +1,9 @@
-import React from 'react';
-import './Modal-window.scss';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+import './Modal-window.scss';
 
 export type ModalProps = {
-  onClick: () => void;
+  onClick?: () => void;
   visible: boolean;
   children?: React.ReactNode;
   modalContent?: React.ReactNode;
@@ -11,12 +11,17 @@ export type ModalProps = {
 
 const ModalWindow = (props: ModalProps) => {
   const { children, onClick, visible, modalContent = `Something happend...` } = props;
+  const [isVisible, setIsVisible] = useState<boolean>(visible);
+  const onClose = () => {
+    onClick && onClick();
+    setIsVisible(false);
+  };
   const modal = () => {
     return (
       <div className="modal-layout">
         <div className="modal-window">
           <div className="close-wrapper">
-            <div className="close-icon" onClick={onClick}>
+            <div className="close-icon" onClick={onClose}>
               X
             </div>
           </div>
@@ -25,9 +30,9 @@ const ModalWindow = (props: ModalProps) => {
       </div>
     );
   };
-  const root = document.body as HTMLElement;
+  const root = document.getElementById('root');
 
-  return visible && root ? ReactDOM.createPortal(modal(), root) : children;
+  return isVisible && root ? ReactDOM.createPortal(modal(), root) : children;
 };
 
 export default ModalWindow;

@@ -12,6 +12,9 @@ export const Layout = () => {
     <>
       <Header>
         <Logo />
+        <NavLink to={'profile'} className={({ isActive }) => setActive(isActive)}>
+          Профиль
+        </NavLink>
         <NavLink to={'products'} className={({ isActive }) => setActive(isActive)}>
           Товары
         </NavLink>
@@ -20,9 +23,6 @@ export const Layout = () => {
         </NavLink>
         <NavLink to={'bucket'} className={({ isActive }) => setActive(isActive)}>
           Корзина
-        </NavLink>
-        <NavLink to={'profile'} className={({ isActive }) => setActive(isActive)}>
-          Профиль
         </NavLink>
         <NavLink to={'register'} className={({ isActive }) => setActive(isActive)}>
           Регистрация
