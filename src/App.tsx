@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ProductList } from 'src/homeworks/homework-5/ProductList';
-import { arrayMockProductsGenerate } from 'src/mock-data/mock-products';
 import { ErrorPage } from 'src/pages/error-page';
 import { HomePage } from 'src/pages/home-page';
 import { AddProductForm } from 'src/stories/components/hw-6-Forms/AddProductForm';
@@ -17,7 +16,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="profile" element={<RedoUserProfileForm />} />
-          <Route path="products" element={<ProductList products={arrayMockProductsGenerate()} />} />
+          <Route path="products" element={<ProductList />} />
           <Route
             path="edit-products"
             element={

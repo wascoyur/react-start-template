@@ -268,7 +268,10 @@ export const getData = () => {
 export type mockProductGen = {
   currentListProducts: Array<Product>;
 };
-export const arrayMockProductsGenerate = () => {
-  const res: Array<Product> = [createRandomProduct(Date.now().toString())];
-  return res;
+export const arrayMockProductsGenerate = (): Array<Product> => {
+  const count = Math.floor(Math.random() * 91) + 10;
+  const products: Array<Product> = Array.from({ length: count }, (_, index) =>
+    createRandomProduct(Date.now().toString())
+  );
+  return products;
 };
