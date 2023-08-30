@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
 import { Product } from 'src/homeworks/ts1/3_write';
+import { arrayMockProductsGenerate } from 'src/mock-data/mock-products';
 import { ProductItem } from 'src/stories/components/product/ProductItem';
-import { arrayMockProductsGenerate } from 'src/stories/mock-data/mock-products';
-import './product-list.scss';
+import '../../stories/components/product/product-list.scss';
 
 export type typeProductList = { listClssNames?: string; itemClssNames?: string };
 
