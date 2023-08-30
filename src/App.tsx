@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ProductList } from 'src/homeworks/homework-5/ProductList';
+import { BucketPage } from 'src/pages/Bucket-page';
 import { ErrorPage } from 'src/pages/error-page';
 import { HomePage } from 'src/pages/home-page';
 import { AddProductForm } from 'src/stories/components/hw-6-Forms/AddProductForm';
@@ -30,7 +31,7 @@ function App() {
             }
           />
           <Route path="create-product" element={<ErrorPage />} />
-          <Route path="bucket" element={<ErrorPage />} />
+          <Route path="bucket" element={<BucketPage />} />
           <Route path="register" element={<UserRegisterForm />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>

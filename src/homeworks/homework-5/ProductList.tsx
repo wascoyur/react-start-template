@@ -1,7 +1,8 @@
 import classNames from 'classnames';
-import React, { FC, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Product } from 'src/homeworks/ts1/3_write';
-import { arrayMockProductsGenerate } from 'src/mock-data/mock-products';
+import { ProductItem } from 'src/stories/components/product/ProductItem';
+import { arrayMockProductsGenerate } from 'src/stories/mock-data/mock-products';
 import './product-list.scss';
 
 export type typeProductList = { listClssNames?: string; itemClssNames?: string };
@@ -32,16 +33,3 @@ export const ProductList: React.FC<typeProductList> = (props) => {
 };
 
 export type typeProductItem = { item: Product; itemClssNames?: string };
-
-export const ProductItem: FC<typeProductItem> = (props) => {
-  const {
-    item: { name, price },
-    itemClssNames = 'product-item',
-  } = props;
-  return (
-    <div className={classNames(itemClssNames)}>
-      <h4>{name}</h4>
-      <p>Price: {price}</p>
-    </div>
-  );
-};
