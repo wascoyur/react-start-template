@@ -1,16 +1,19 @@
 import classNames from 'classnames';
 import React from 'react';
-import { typeProductItem } from 'src/homeworks/homework-5/ProductList';
+import { Product } from 'src/homeworks/ts1/3_write';
+import './product-list.scss';
 
+type typeProductItem = { item: Product; itemClssNames?: string };
 export const ProductItem = (props: typeProductItem) => {
   const {
-    item: { name, price },
+    item: { name, price, category },
     itemClssNames = 'product-item',
   } = props;
 
   return (
     <div className={classNames(itemClssNames)}>
       <h4>{name}</h4>
+      <div>{`категория: ${category}`}</div>
       <p>Price: {price}</p>
     </div>
   );
