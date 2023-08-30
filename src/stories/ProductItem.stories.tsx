@@ -19,6 +19,6 @@ export const Default = {
         count: 145,
       },
     },
-    itemClssNames: `product-item`,
+    itemClssNames: 'product-item',
   },
 };

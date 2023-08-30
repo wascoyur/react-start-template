@@ -7,8 +7,8 @@ type typeProductItem = { item: Product; itemClssNames?: string };
 export const ProductItem = (props: typeProductItem) => {
   const {
     item: { name, price, category },
-    itemClssNames = 'product-item',
   } = props;
+  const itemClssNames = props.itemClssNames ?? 'product-item';
 
   return (
     <div className={classNames(itemClssNames)}>

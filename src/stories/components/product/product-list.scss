@@ -1,3 +1,7 @@
+.product-list-item {
+    display: grid;
+    grid-auto-columns: 2fr
+}
 
 .product-item {
     display: grid;
@@ -5,4 +9,5 @@
     margin: 0.25em;
     border: #c0c2c4 1px solid;
     border-radius: 1em;
+    grid-area: item;
 }
