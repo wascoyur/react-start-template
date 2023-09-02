@@ -6,7 +6,6 @@ export const ProfileScreen = () => {
   const HandleSubmit = () => {
     console.log('values');
   };
-  const handleChange = () => {};
 
   return (
     <div className="profile-screen">
