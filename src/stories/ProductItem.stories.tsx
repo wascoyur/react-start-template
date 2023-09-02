@@ -2,7 +2,7 @@ import { ProductItem } from './components/product/ProductItem';
 
 export default {
   component: ProductItem,
-  title: 'Элемент списка товаров',
+  title: 'Элемент  товара',
 };
 export const Default = {
   args: {

@@ -1,0 +1,26 @@
+.bucket-list {
+    display: grid;
+    height: 90vh;
+    place-items: center;
+
+    .bucket-item {
+        display: grid;
+        grid-template-columns: 14fr 1fr;;
+        grid-gap: 1rem; // Adjust as needed
+        align-items: center;
+        border: 0.25px solid black;
+        border-radius: 0.25rem;
+        padding: 0.25rem;
+    }
+
+    .icon {
+        // Add any styles you want for the icon container
+    }
+
+    // You can style the DeleteIcon component here if needed
+    .icon svg {
+        width: 30px;
+        height: 30px;
+        // Add any other icon-specific styles
+    }
+}
