@@ -1,5 +1,6 @@
 import React from 'react';
 import { BucketComponent } from './components/bucket-component/BucketComponent';
+import { BucketItem } from 'src/stories/components/product/ProductListItem';
 
 export default {
   title: 'Компонент товара для корзины',
@@ -9,7 +10,7 @@ export default {
 export const BucketComponentS = () => {
   return (
     <>
-      <BucketComponent />
+      <BucketItem itemName={'BucketItem'} />
     </>
   );
 };
