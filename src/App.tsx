@@ -1,14 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ProfileScreen } from 'src/homeworks/homework-6/ProfileScreen';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>powered by yuriy.vasilev</p>
-      </header>
+      <ProfileScreen />
     </div>
   );
 }

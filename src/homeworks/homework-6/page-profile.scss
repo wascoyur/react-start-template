@@ -1,0 +1,33 @@
+.profile-screen {
+    display: grid;
+    place-content: center;
+    max-width: 1080px;
+
+
+    .profile-section {
+        display: grid;
+        
+
+        form {
+            display: grid;
+            grid-column: auto;
+            grid-auto-rows: 2fr;
+
+            input, textarea {
+                margin: 0.25rem;
+            }
+
+            label {
+                margin: 1.5em 0.2em 0.2em;
+            }
+
+            button {
+                width: 5rem;
+                margin: 0.25rem;
+            }
+        }
+
+    }
+
+
+}

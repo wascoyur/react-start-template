@@ -12,7 +12,7 @@ type Category = {
   name: string;
   photo?: string;
 };
-type Product = {
+export type Product = {
   id: string;
   name: string;
   photo?: string;

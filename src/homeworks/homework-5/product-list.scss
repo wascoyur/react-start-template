@@ -1,0 +1,12 @@
+.product-list {
+    display: grid;
+    place-content: center;
+
+    .product-item {
+        display: grid;
+        padding: 0.5em 1em 0.5em;
+        margin: 0.25em;
+        border: #c0c2c4 1px solid;
+        border-radius: 1em;
+    }
+}

@@ -31,9 +31,7 @@ module.exports = (_, args) => {
     output: {
       path: dist,
       publicPath:
-        args.mode === 'development'
-          ? `http://${host}:${port}/`
-          : `https://wascoyur.github.io/react-start-template/` /* <- прописать данные своего github */,
+        args.mode === 'development' ? `http://${host}:${port}/` : undefined /* <- прописать данные своего github */,
       filename: `js/[name].js`,
       chunkFilename: `js/[name].js`,
     },
@@ -68,20 +66,19 @@ module.exports = (_, args) => {
           type: 'asset/inline',
         },
         {
-          test: /\.s[ac]ss$/i,
+          test: /\.scss$/,
+          use: ['style-loader', 'css-loader', 'sass-loader'],
+        },
+        {
+          test: /\.(jpe?g)$/i,
           use: [
             {
-              loader: MiniCssExtractPlugin.loader,
-            },
-            {
-              loader: 'css-loader',
+              loader: 'file-loader',
               options: {
-                modules: {
-                  localIdentName: '[name]_[local]-[hash:base64:5]',
-                },
+                name: '[name].[ext]',
+                outputPath: 'images/',
               },
             },
-            'sass-loader',
           ],
         },
       ],
