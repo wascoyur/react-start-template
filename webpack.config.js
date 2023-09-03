@@ -1,15 +1,15 @@
-import { join } from 'path';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-import MiniCssExtractPlugin, { loader as _loader } from 'mini-css-extract-plugin';
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const port = 2233;
-const dist = join(__dirname, 'dist');
-const src = join(__dirname, 'src');
+const dist = path.join(__dirname, 'dist');
+const src = path.join(__dirname, 'src');
 const host = 'localhost';
 
-export default (_, args) => {
+module.exports = (_, args) => {
   return {
     entry: './index.tsx',
     devtool: 'source-map',
@@ -46,7 +46,7 @@ export default (_, args) => {
           test: /\.less$/,
           use: [
             {
-              loader: _loader,
+              loader: MiniCssExtractPlugin.loader,
             },
             'css-loader',
             'less-loader',
@@ -56,7 +56,7 @@ export default (_, args) => {
           test: /\.css$/,
           use: [
             {
-              loader: _loader,
+              loader: MiniCssExtractPlugin.loader,
             },
             'css-loader',
           ],
@@ -81,7 +81,6 @@ export default (_, args) => {
             },
           ],
         },
-
         {
           test: /\.svg$/,
           use: ['@svgr/webpack'],
@@ -100,7 +99,7 @@ export default (_, args) => {
       }),
       new ForkTsCheckerWebpackPlugin({
         typescript: {
-          configFile: join(__dirname, 'tsconfig.json'),
+          configFile: path.join(__dirname, 'tsconfig.json'),
         },
       }),
     ],
