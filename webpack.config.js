@@ -12,7 +12,7 @@ const host = 'localhost';
 module.exports = (_, args) => {
   return {
     entry: './index.tsx',
-    devtool: 'source-map',
+    devtool: 'inline-source-map',
     context: src,
     devServer: {
       open: true,
@@ -27,6 +27,12 @@ module.exports = (_, args) => {
       alias: {
         src,
       },
+      // Add support for TypeScripts fully qualified ESM imports.
+      extensionAlias: {
+        '.js': ['.js', '.ts'],
+        '.cjs': ['.cjs', '.cts'],
+        '.mjs': ['.mjs', '.mts'],
+      },
     },
     output: {
       path: dist,
@@ -38,8 +44,8 @@ module.exports = (_, args) => {
     module: {
       rules: [
         {
-          test: /\.(js|ts)x?$/,
-          loader: require.resolve('babel-loader'),
+          test: /\.([cm]?ts|tsx)$/,
+          loader: 'ts-loader',
           exclude: /node_modules/,
         },
         {
