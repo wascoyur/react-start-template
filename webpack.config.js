@@ -27,12 +27,6 @@ module.exports = (_, args) => {
       alias: {
         src,
       },
-      // Add support for TypeScripts fully qualified ESM imports.
-      extensionAlias: {
-        '.js': ['.js', '.ts'],
-        '.cjs': ['.cjs', '.cts'],
-        '.mjs': ['.mjs', '.mts'],
-      },
     },
     output: {
       path: dist,
