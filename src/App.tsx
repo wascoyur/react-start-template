@@ -4,12 +4,12 @@ import { ProductList } from 'src/homeworks/homework-5/ProductList';
 import { PageBucket } from 'src/pages/bucket-page';
 import { ErrorPage } from 'src/pages/error-page';
 import { HomePage } from 'src/pages/home-page';
-import { AddProductForm } from 'src/stories/components/hw-6-Forms/AddProductForm';
+import { AddProductForm } from 'src/stories/components/product/AddProductForm';
 import { RedoUserProfileForm } from 'src/stories/components/hw-6-Forms/RedoUserProfileForm';
-import { UserRegisterForm } from 'src/stories/components/hw-6-Forms/UserRegisterForm';
 import ModalWindow from 'src/stories/components/modal/ModalWindow';
 import { Header } from 'src/stories/components/header/Header';
 import { Logo } from 'src/stories/components/logo/Logo';
+import { LoginPage } from 'src/pages/login-page';
 
 function App() {
   const AppHeader = () => {
@@ -21,8 +21,7 @@ function App() {
         <NavLink to={'products'}>Товары</NavLink>
         <NavLink to={'edit-products'}>Создание/редактирование товара</NavLink>
         <NavLink to={'bucket'}>Корзина</NavLink>
-        <NavLink to={'register'}>Регистрация</NavLink>
-        <NavLink to={'profile'}>Профиль</NavLink>
+        <NavLink to={'auth'}>Вход</NavLink>
       </Header>
     );
   };
@@ -47,7 +46,7 @@ function App() {
         />
         <Route path="create-product" element={<ErrorPage />} />
         <Route path="bucket" element={<PageBucket />} />
-        <Route path="register" element={<UserRegisterForm />} />
+        <Route path="auth" element={<LoginPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>

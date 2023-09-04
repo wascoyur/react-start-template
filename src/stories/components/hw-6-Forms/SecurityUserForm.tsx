@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { FormikErrors, useFormik } from 'formik';
 import { propsShareForm } from 'src/stories/components/hw-6-Forms/RedoUserProfileForm';
-import './add-redo-user-profile.scss';
+import '../scss/common-form.scss';
 
 type userSecurity = {
   currentpassword: string;

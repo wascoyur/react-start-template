@@ -1,5 +1,5 @@
 import React from 'react';
-import { AddProductForm } from './components/hw-6-Forms/AddProductForm';
+import { AddProductForm } from './components/product/AddProductForm';
 
 export default {
   title: 'Форма добавления товара',

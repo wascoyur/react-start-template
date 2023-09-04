@@ -4,7 +4,7 @@ import React from 'react';
 import { propsShareForm } from 'src/stories/components/hw-6-Forms/RedoUserProfileForm';
 import productImage from '../../assets/products/card-img.jpg';
 import { ProductImage, TypeProduct } from '../cards-product/ProductCard';
-import './add-redo-user-profile.scss';
+import '../scss/common-form.scss';
 
 export const AddProductForm = (props: propsShareForm) => {
   const { customStyle = 'default-style' } = props;

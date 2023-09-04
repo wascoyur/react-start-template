@@ -2,9 +2,9 @@ import classNames from 'classnames';
 import { Field, Form, Formik, FormikErrors } from 'formik';
 import React from 'react';
 import { PrfileForm, propsShareForm } from 'src/stories/components/hw-6-Forms/RedoUserProfileForm';
-import './add-redo-user-profile.scss';
+import '../scss/common-form.scss';
 
-export const UserRegisterForm = (props: propsShareForm) => {
+export const RegisterUser = (props: propsShareForm) => {
   const { customStyle = 'default-style' } = props;
   let errors: FormikErrors<PrfileForm> = {};
   const validate = (values: PrfileForm) => {
