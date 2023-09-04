@@ -28,28 +28,27 @@ function App() {
   };
   return (
     <div className="App">
+      <AppHeader />
       <Routes>
-        <Route path="/" element={<AppHeader />}>
-          <Route index element={<HomePage />} />
-          <Route path="profile" element={<RedoUserProfileForm />} />
-          <Route path="products" element={<ProductList />} />
-          <Route
-            path="edit-products"
-            element={
-              <ModalWindow
-                modalContent={<AddProductForm />}
-                onClick={() => {
-                  console.log('click');
-                }}
-                visible={true}
-              ></ModalWindow>
-            }
-          />
-          <Route path="create-product" element={<ErrorPage />} />
-          <Route path="bucket" element={<PageBucket />} />
-          <Route path="register" element={<UserRegisterForm />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Route>
+        <Route index element={<HomePage />} />
+        <Route path="profile" element={<RedoUserProfileForm />} />
+        <Route path="products" element={<ProductList />} />
+        <Route
+          path="edit-products"
+          element={
+            <ModalWindow
+              modalContent={<AddProductForm />}
+              onClick={() => {
+                console.log('click');
+              }}
+              visible={true}
+            ></ModalWindow>
+          }
+        />
+        <Route path="create-product" element={<ErrorPage />} />
+        <Route path="bucket" element={<PageBucket />} />
+        <Route path="register" element={<UserRegisterForm />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
   );
