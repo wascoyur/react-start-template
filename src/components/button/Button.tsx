@@ -1,6 +1,5 @@
 import React, { FC, ReactNode } from 'react';
-import styles from './Button.module.css';
-import cn from 'clsx';
+import styles from './Button.module.scss';
 
 interface ButtonProps {
   onClick: () => void;
@@ -9,7 +8,7 @@ interface ButtonProps {
 
 export const Button: FC<ButtonProps> = ({ onClick, children }) => {
   return (
-    <button className={cn(styles.button)} onClick={onClick}>
+    <button className={styles.button} onClick={onClick}>
       {children}
     </button>
   );

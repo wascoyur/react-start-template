@@ -1,11 +1,10 @@
 import React, { FC } from 'react';
-import { Header } from '../header/Header';
-import styles from './Layout.module.css';
-import cn from 'clsx';
+import { Header } from '../header';
+import styles from './Layout.module.scss';
 
 export const Layout: FC = () => {
   return (
-    <div className={cn(styles.layout)}>
+    <div className={styles.layout}>
       <Header />
     </div>
   );

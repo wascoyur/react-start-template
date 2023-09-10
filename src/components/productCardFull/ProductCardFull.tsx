@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
-import { AddToCartButton } from '../addToCartButton/AddToCartButton';
-import styles from './ProductCardFull.module.css';
-import cn from 'clsx';
+import { AddToCartButton } from '../addToCartButton';
+import styles from './ProductCardFull.module.scss';
+import cn from 'classnames';
 
 interface ProductCardFullProps {
   title: string;
@@ -11,25 +11,33 @@ interface ProductCardFullProps {
   price: number;
 }
 
-export const ProductCardFull: FC<ProductCardFullProps> = ({ title, description, category, previewImages, price }) => {
+export const ProductCardFull: FC<ProductCardFullProps> = ({
+  title,
+  description,
+  category,
+  previewImages,
+  price,
+}) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   return (
-    <div className={cn(styles.productCard)}>
-      <span className={cn(styles.category)}>{category}</span>
+    <div className={styles.productCard}>
+      <span className={styles.category}>{category}</span>
       <div
-        className={cn(styles.preview)}
+        className={styles.preview}
         style={{
           backgroundImage: `url('${previewImages[activeImageIndex]}')`,
         }}
       >
         {previewImages.length > 1 && (
-          <div className={cn(styles.previewPoints)}>
+          <div className={styles.previewPoints}>
             {previewImages.map((_, index) => {
               return (
                 <span
                   key={index}
-                  className={cn([styles.previewPoint, activeImageIndex === index && styles.active])}
+                  className={cn(styles.previewPoint, {
+                    [styles.active]: activeImageIndex === index,
+                  })}
                   onClick={() => setActiveImageIndex(index)}
                 ></span>
               );
@@ -37,13 +45,13 @@ export const ProductCardFull: FC<ProductCardFullProps> = ({ title, description, 
           </div>
         )}
       </div>
-      <h3 className={cn(styles.title)} title={title}>
+      <h3 className={styles.title} title={title}>
         {title}
       </h3>
-      <p className={cn(styles.description)} title={description}>
+      <p className={styles.description} title={description}>
         {description}
       </p>
-      <p className={cn(styles.price)}>{price}</p>
+      <p className={styles.price}>{price}</p>
       <AddToCartButton counter={0} />
     </div>
   );

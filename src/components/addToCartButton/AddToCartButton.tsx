@@ -1,7 +1,6 @@
 import React, { ChangeEvent, FC, useState } from 'react';
-import styles from './AddToCartButton.module.css';
-import cn from 'clsx';
-import { Button } from '../button/Button';
+import { Button } from '../button';
+import styles from './AddToCartButton.module.scss';
 
 interface AddToCartButtonProps {
   counter: number;
@@ -19,7 +18,7 @@ export const AddToCartButton: FC<AddToCartButtonProps> = ({ counter }) => {
 
 interface CountSwitcherProps {
   counter: number;
-  setCounter: (number) => void;
+  setCounter: (arg: number) => void;
 }
 
 const CountSwitcher: FC<CountSwitcherProps> = ({ counter, setCounter }) => {
@@ -40,9 +39,9 @@ const CountSwitcher: FC<CountSwitcherProps> = ({ counter, setCounter }) => {
   };
 
   return (
-    <div className={cn(styles.switcher)}>
+    <div className={styles.switcher}>
       <Button onClick={onDecrement}>-</Button>
-      <input className={cn(styles.input)} type="text" value={counter} onChange={onChange} />
+      <input className={styles.input} type="text" value={counter} onChange={onChange} />
       <Button onClick={onIncrement}>+</Button>
     </div>
   );

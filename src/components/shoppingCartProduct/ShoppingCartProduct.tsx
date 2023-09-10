@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
-import styles from './ShoppingCartProduct.module.css';
-import cn from 'clsx';
-import { Button } from '../button/Button';
+import { Button } from '../button';
+import styles from './ShoppingCartProduct.module.scss';
 
 interface ShoppingCartProductProps {
   title: string;
@@ -19,19 +18,19 @@ export const ShoppingCartProduct: FC<ShoppingCartProductProps> = ({
   price,
 }) => {
   return (
-    <div className={cn(styles.productCard)}>
-      <img className={cn(styles.preview)} src={previewImage} alt={title} />
-      <div className={cn(styles.productInfo)}>
-        <h3 className={cn(styles.title)} title={title}>
+    <div className={styles.productCard}>
+      <img className={styles.preview} src={previewImage} alt={title} />
+      <div className={styles.productInfo}>
+        <h3 className={styles.title} title={title}>
           {title}
         </h3>
-        <p className={cn(styles.description)} title={description}>
+        <p className={styles.description} title={description}>
           {description}
         </p>
       </div>
-      <p className={cn(styles.price)}>{price}</p>
-      <p className={cn(styles.count)}>{count}</p>
-      <p className={cn(styles.total)}>{count * price}</p>
+      <p className={styles.price}>{price}</p>
+      <p className={styles.count}>{count}</p>
+      <p className={styles.total}>{count * price}</p>
       <Button
         onClick={() => {
           console.log('Удалить');

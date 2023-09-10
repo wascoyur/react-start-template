@@ -1,22 +1,29 @@
 import React, { FC, ReactNode } from 'react';
-import styles from './Modal.module.css';
-import cn from 'clsx';
+import styles from './Modal.module.scss';
+import cn from 'classnames';
 
 interface ModalProps {
   visible: boolean;
+  setVisible: (visible: boolean) => void;
   children: ReactNode;
 }
 
-export const Modal: FC<ModalProps> = ({ visible, children }) => {
+export const Modal: FC<ModalProps> = ({ visible, setVisible, children }) => {
+  const onClose = () => {
+    setVisible(!visible);
+  };
+
   return (
     <div
       className={cn(styles.modal, {
-        visible,
+        [styles.visible]: visible,
       })}
     >
-      <div className={cn(styles.overlay)}></div>
-      <div className={cn(styles.popup)}>
-        <button className={cn(styles.close)}>X</button>
+      <div className={styles.overlay}></div>
+      <div className={styles.popup}>
+        <button className={styles.close} onClick={onClose}>
+          X
+        </button>
         {children}
       </div>
     </div>
