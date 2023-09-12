@@ -1,12 +1,20 @@
 import { create } from 'zustand';
 
 type TokenStore = {
-  token: string;
-  setToken: (token: string) => void;
-  clearToken: () => void;
+  tokenUser: string;
+  tokenAdmin: string;
+  setTokenUser: (token: string) => void;
+  setTokenAdmin: (token: string) => void;
+  clearTokens: () => void;
 };
 export const useStore = create<TokenStore>()((set) => ({
-  token: '',
-  setToken: (newToken: string) => set(() => ({ token: newToken })),
-  clearToken: () => set({ token: '' }),
+  tokenUser: '',
+  tokenAdmin: '',
+  setTokenUser: (newToken: string) => set(() => ({ tokenUser: newToken })),
+  setTokenAdmin: (newTokenAdm: string) => set(() => ({ tokenUser: newTokenAdm })),
+  clearTokens: () =>
+    set(() => ({
+      tokenUser: '',
+      tokenAdmin: '',
+    })),
 }));

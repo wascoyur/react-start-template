@@ -8,7 +8,7 @@ type userSecurity = {
   newpassword: string;
   repeatpassword: string;
 };
-export const SecurityUserForm = (props: propsShareForm) => {
+export const ChangeUserPassword = (props: propsShareForm) => {
   const { customStyle = 'default-style' } = props;
   const validate = (values: userSecurity) => {
     let errors: FormikErrors<userSecurity> = {};
