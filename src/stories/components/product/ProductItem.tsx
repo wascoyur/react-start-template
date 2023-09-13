@@ -13,7 +13,7 @@ export const ProductItem = (props: typeProductItem) => {
   return (
     <div className={classNames(itemClssNames)}>
       <h4>{name}</h4>
-      <div>{`категория: ${category}`}</div>
+      <div>{`категория: ${category.name}`}</div>
       <p>Price: {price}</p>
     </div>
   );
