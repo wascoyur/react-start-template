@@ -9,7 +9,7 @@ export const ProductPage = () => {
   return (
     <>
       <ProductList listClssNames="product-list-item" />
-      {token.tokenAdmin && (
+      {token.tokenAdmin.length && (
         <ModalWindow
           modalContent={<AddProductForm />}
           onClick={() => {

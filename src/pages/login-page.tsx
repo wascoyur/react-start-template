@@ -7,9 +7,8 @@ export const LoginPage = () => {
   return (
     <div>
       <h1>Логин/регистрация</h1>
-      {/*isHasToken?*/}
 
-      {token.tokenUser || token.tokenAdmin ? (
+      {token.tokenUser.length || token.tokenAdmin.length ? (
         <>
           <ChangeUserPassword />
           {/*<RegisterUser />*/}

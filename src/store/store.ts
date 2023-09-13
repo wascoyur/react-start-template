@@ -11,7 +11,7 @@ export const useStore = create<TokenStore>()((set) => ({
   tokenUser: '',
   tokenAdmin: '',
   setTokenUser: (newToken: string) => set(() => ({ tokenUser: newToken })),
-  setTokenAdmin: (newTokenAdm: string) => set(() => ({ tokenUser: newTokenAdm })),
+  setTokenAdmin: (newTokenAdm: string) => set(() => ({ tokenAdmin: newTokenAdm })),
   clearTokens: () =>
     set(() => ({
       tokenUser: '',

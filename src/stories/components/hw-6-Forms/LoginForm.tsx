@@ -19,11 +19,11 @@ export const LoginForm = () => {
     console.log(login, password);
     e.preventDefault();
     if (login === 'admin' && password === 'admpass') {
-      setToken.setTokenUser(password);
+      setToken.setTokenAdmin(login);
       return;
     }
     if (login === 'user' && password === 'password') {
-      setToken.setTokenAdmin(password);
+      setToken.setTokenUser(login);
       return;
     }
   };

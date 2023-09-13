@@ -12,4 +12,12 @@
     border-radius: 1em;
     max-width: 25rem;
     min-width: 17rem;
+    grid-template-columns: 2fr auto;
+    align-items: center;
+
+    .item-content{
+
+    }
+    .icon-action{
+    }
 }
