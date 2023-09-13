@@ -1,6 +1,7 @@
 .product-list-item {
     display: grid;
-    grid-auto-columns: 2fr
+    grid-auto-columns: 1fr;
+    justify-items: center
 }
 
 .product-item {
@@ -9,5 +10,6 @@
     margin: 0.25em;
     border: #c0c2c4 1px solid;
     border-radius: 1em;
-    grid-area: item;
+    max-width: 25rem;
+    min-width: 17rem;
 }
