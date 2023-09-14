@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '../button/Button';
 import './in-cart-button.scss';
 
@@ -6,7 +6,7 @@ type propsInCartButton = {
   count?: number;
 };
 export const InCartButton = (props: propsInCartButton) => {
-  const { count } = props;
+  const { count = 0 } = props;
 
   const InCart = () => {
     return (
@@ -18,11 +18,17 @@ export const InCartButton = (props: propsInCartButton) => {
 
   const Input = () => {
     const backgroundColor = '#1ea7fd';
+    const [count, setCount] = useState(0);
     return (
       <div className="card-count-input">
-        <Button label={'-'} backgroundColor={backgroundColor} />
-        <input value={0} />
-        <Button label={'+'} backgroundColor={backgroundColor} />
+        <Button label={'-'} backgroundColor={backgroundColor} onClick={() => setCount(count - 1)} />
+        <input
+          value={count}
+          onChange={(e) => {
+            setCount(parseInt(e.target.value));
+          }}
+        />
+        <Button label={'+'} backgroundColor={backgroundColor} onClick={() => setCount(count + 1)} />
       </div>
     );
   };

@@ -4,16 +4,15 @@ import { InCartButton } from '../in-cart-button/InCartButton';
 import './product-card.scss';
 
 export type TypeProduct = {
-  id: number;
-  title: React.ReactNode | string;
+  id?: number;
+  title?: React.ReactNode | string;
   category?: string;
-  description: React.ReactNode | string;
-  img_url: string;
-  price: number;
+  description?: React.ReactNode | string;
+  img_url?: string;
+  price?: number;
 };
 export const ProductCard = (props: TypeProduct) => {
-  const { description, img_url, id, title, price, category } = props;
-
+  const { description, title, price, category } = props;
   const Title = () => {
     return <div className="product-card-title">{title || `The Title product`}</div>;
   };

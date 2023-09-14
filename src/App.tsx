@@ -8,19 +8,17 @@ import { Header } from 'src/stories/components/header/Header';
 import { Logo } from 'src/stories/components/logo/Logo';
 import { LoginPage } from 'src/pages/login-page';
 import { ProductPage } from 'src/pages/product-page';
-import { useStore } from 'src/store/store';
+import { AddProductForm } from 'src/stories/components/product/AddProductForm';
+import { ProductCard } from 'src/stories/components/cards-product/ProductCard';
 
 function App() {
   const AppHeader = () => {
-    const userToken = useStore();
-
     return (
       <Header>
         <NavLink to={'/'}>
           <Logo />
         </NavLink>
         <NavLink to={'products'}>Товары</NavLink>
-        {userToken.tokenAdmin.length > 0 && <NavLink to={'edit-products'}>Создание/редактирование товара</NavLink>}
         <NavLink to={'bucket'}>Корзина</NavLink>
         <NavLink to={'auth'}>Вход</NavLink>
       </Header>
@@ -33,8 +31,10 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="profile" element={<RedoUserProfileForm />} />
         <Route path="products" element={<ProductPage />} />
+        <Route path="products/edit-products" element={<AddProductForm />} />
+        <Route path="products/product-card" element={<ProductCard />} />
 
-        <Route path="create-product" element={<ErrorPage />} />
+        <Route path="create-product" element={<AddProductForm />} />
         <Route path="bucket" element={<PageBucket />} />
         <Route path="auth" element={<LoginPage />} />
         <Route path="*" element={<ErrorPage />} />
