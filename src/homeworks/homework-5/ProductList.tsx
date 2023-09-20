@@ -10,9 +10,9 @@ export type typeProductList = { listClssNames?: string; itemClssNames?: string }
 export const ProductList: React.FC<typeProductList> = (props) => {
   const { listClssNames = 'product-list', itemClssNames = 'product-item' } = props;
   const [productList, setProductList] = useState<Product[]>();
+  const [loading, setLoading] = useState<boolean>(true);
   const getProducts = () => {
-    const products = arrayMockProductsGenerate();
-    setProductList(products);
+    return arrayMockProductsGenerate();
   };
 
   useEffect(() => {
@@ -27,9 +27,5 @@ export const ProductList: React.FC<typeProductList> = (props) => {
 
   const EmptyList = () => <div>No Products</div>;
 
-  return (
-    <div className={classNames(listClssNames)}>{productList && productList.length ? <ListItems /> : <EmptyList />}</div>
-  );
+  return <div className={classNames(listClssNames)}>{loading ? <EmptyList /> : <ListItems />}</div>;
 };
-
-export type typeProductItem = { item: Product; itemClssNames?: string };
