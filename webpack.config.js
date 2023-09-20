@@ -20,7 +20,9 @@ module.exports = (_, args) => {
       hot: true,
       historyApiFallback: true,
       host,
-      https: true,
+      server: {
+        type: 'https',
+      },
     },
     resolve: {
       modules: [src, 'node_modules'],
