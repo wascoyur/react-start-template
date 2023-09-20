@@ -4,9 +4,15 @@
     justify-items: center;
 
 
-    .title-forms {
+    .title-forms .title {
         margin: 0.5rem 0.25rem;
         font-size: 2rem;
+    }
+    button {
+        max-width: 6rem;
+        border-radius: 0.35rem;
+        padding: 0.2rem;
+        margin: 1rem;
     }
 
     form {
@@ -27,13 +33,6 @@
             min-height: 3rem;
             border-radius: 0.35rem
         }
-
-        button {
-            max-width: 6rem;
-            border-radius: 0.35rem;
-            padding: 0.2rem;
-        }
-
         .validate-message {
             color: red;
             padding: 0.2rem 0.5rem;

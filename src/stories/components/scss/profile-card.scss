@@ -1,0 +1,19 @@
+.profile-card{
+  display:grid;
+  width: 296px;
+  flex-shrink: 0;
+  padding: 0.5rem;
+  border-radius: 4.444px;
+  border: 0.889px solid var(--Input-Box-Stroke-Thin, rgba(0, 0, 0, 0.15));
+  box-shadow: 0 1.77778px 1.77778px 0px rgba(0, 0, 0, 0.10);
+
+  .field{
+    color: rgba(31, 31, 31, 0.70);
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .field-value{
+    padding-left: 1rem;
+  }
+}

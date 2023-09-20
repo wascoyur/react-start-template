@@ -4,16 +4,17 @@ import { ProfileUser } from 'src/stories/components/profle/ProfileUser';
 
 export const LoginPage = () => {
   const token = useStore();
+  const userIsAuth = () => true; /*token.tokenUser.length || token.tokenAdmin.length;*/
   return (
     <div>
-      <h1>Логин/регистрация</h1>
+      {!userIsAuth() && <h1>Логин/регистрация</h1>}
 
-      {token.tokenUser.length || token.tokenAdmin.length ? (
+      {userIsAuth() ? (
         <>
           <ProfileUser />
 
           <div className="default-style">
-            <button onClick={token.clearTokens}>Exit</button>
+            <button onClick={token.clearTokens}>Выйти и</button>
           </div>
         </>
       ) : (

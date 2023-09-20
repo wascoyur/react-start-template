@@ -11,8 +11,10 @@ import { ProductPage } from 'src/pages/product-page';
 import { AddProductForm } from 'src/stories/components/product/AddProductForm';
 import { ProductCard } from 'src/stories/components/cards-product/ProductCard';
 import { RegisterUser } from 'src/stories/components/profle/RegisterUser';
+import { useUserAuth } from 'src/components/hooks/isAuth';
 
 function App() {
+  const isUserAuth = useUserAuth();
   const AppHeader = () => {
     return (
       <Header>
@@ -21,7 +23,7 @@ function App() {
         </NavLink>
         <NavLink to={'products'}>Товары</NavLink>
         <NavLink to={'bucket'}>Корзина</NavLink>
-        <NavLink to={'auth'}>Вход</NavLink>
+        <NavLink to={'auth'}>{isUserAuth ? `Профиль` : `Вход`}</NavLink>
       </Header>
     );
   };
