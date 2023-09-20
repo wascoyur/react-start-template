@@ -1,12 +1,13 @@
 import { FormEvent, useEffect, useState } from 'react';
 import '../scss/common-form.scss';
 import { useStore } from 'src/store/store';
-
+import { useNavigate } from 'react-router-dom';
 export const LoginForm = () => {
   const setToken = useStore();
   const [login, setLogin] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [isFilled, setIsFilled] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (login.length > 0 && password.length > 0) {
@@ -16,7 +17,6 @@ export const LoginForm = () => {
     setIsFilled(false);
   }, [login, password]);
   const handleLogInUser = (e: FormEvent) => {
-    console.log(login, password);
     e.preventDefault();
     if (login === 'admin' && password === 'admpass') {
       setToken.setTokenAdmin(login);
@@ -26,6 +26,7 @@ export const LoginForm = () => {
       setToken.setTokenUser(login);
       return;
     }
+    navigate('/register');
   };
 
   return (

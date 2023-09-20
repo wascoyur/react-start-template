@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { Field, Form, Formik, FormikErrors } from 'formik';
 import React from 'react';
-import { propsShareForm } from 'src/stories/components/hw-6-Forms/RedoUserProfileForm';
+import { propsShareForm } from 'src/stories/components/profle/RedoUserProfileForm';
 import productImage from '../../assets/products/card-img.jpg';
 import { ProductImage, TypeProduct } from '../cards-product/ProductCard';
 import '../scss/common-form.scss';

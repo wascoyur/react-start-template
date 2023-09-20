@@ -3,13 +3,14 @@ import { NavLink, Route, Routes } from 'react-router-dom';
 import { PageBucket } from 'src/pages/bucket-page';
 import { ErrorPage } from 'src/pages/error-page';
 import { HomePage } from 'src/pages/home-page';
-import { RedoUserProfileForm } from 'src/stories/components/hw-6-Forms/RedoUserProfileForm';
+import { RedoUserProfileForm } from 'src/stories/components/profle/RedoUserProfileForm';
 import { Header } from 'src/stories/components/header/Header';
 import { Logo } from 'src/stories/components/logo/Logo';
 import { LoginPage } from 'src/pages/login-page';
 import { ProductPage } from 'src/pages/product-page';
 import { AddProductForm } from 'src/stories/components/product/AddProductForm';
 import { ProductCard } from 'src/stories/components/cards-product/ProductCard';
+import { RegisterUser } from 'src/stories/components/profle/RegisterUser';
 
 function App() {
   const AppHeader = () => {
@@ -37,6 +38,7 @@ function App() {
         <Route path="create-product" element={<AddProductForm />} />
         <Route path="bucket" element={<PageBucket />} />
         <Route path="auth" element={<LoginPage />} />
+        <Route path="register" element={<RegisterUser />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>

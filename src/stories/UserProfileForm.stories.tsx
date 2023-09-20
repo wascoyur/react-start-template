@@ -1,6 +1,6 @@
 import React from 'react';
-import { RedoUserProfileForm } from './components/hw-6-Forms/RedoUserProfileForm';
-import { ChangeUserPassword } from './components/hw-6-Forms/ChangeUserPassword';
+import { RedoUserProfileForm } from 'src/stories/components/profle/RedoUserProfileForm';
+import { ChangeUserPassword } from 'src/stories/components/profle/ChangeUserPassword';
 import { Divider } from './components/share/Divider';
 
 export default {

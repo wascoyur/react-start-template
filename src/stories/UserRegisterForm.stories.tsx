@@ -1,5 +1,5 @@
 import React from 'react';
-import { RegisterUser } from './components/hw-6-Forms/RegisterUser';
+import { RegisterUser } from 'src/stories/components/profle/RegisterUser';
 
 export default {
   title: 'Форма регистрации пользователя',
