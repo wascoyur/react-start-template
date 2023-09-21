@@ -4,6 +4,7 @@ import { typeProduct } from 'src/homeworks/ts1/3_write';
 import { ProductItem } from 'src/stories/components/product/ProductItem';
 import '../../stories/components/product/product-list.scss';
 import Loader from 'src/stories/components/share/Loader';
+import { useStore } from 'src/store/store';
 
 export type typeProductList = { listClssNames?: string; itemClssNames?: string };
 
@@ -31,25 +32,24 @@ export const ProductList: React.FC<typeProductList> = (props) => {
   const { listClssNames = 'product-list', itemClssNames = 'product-item' } = props;
   const [productList, setProductList] = useState<typeProduct[]>([]); // Изменил на массив пустых товаров
   const [loading, setLoading] = useState<boolean>(true);
+  const productStore = useStore();
 
   const getProducts = async () => {
-    try {
-      const response = await fetch('https://dummyjson.com/products');
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data: ApiResponse = await response.json();
-      console.log(data.product);
-      const products = createProductHelper(data.product) as unknown as ApiResponseProduct[];
-      products && setProductList(products as unknown as typeProduct[]);
-    } catch (error) {
-      console.error('Error fetching products:', error);
-      setLoading(false);
-    }
+    await fetch('https://dummyjson.com/products')
+      .then((r) => {
+        const data = r.json();
+        return data;
+      })
+      .then((data) => {
+        console.log(data);
+        productStore.setProducts(data.products);
+      })
+      .then(() => setLoading(false))
+      .catch((err) => console.error(err));
   };
 
   useEffect(() => {
-    getProducts();
+    if (!productStore.products) getProducts();
   }, []);
 
   // Функция для создания продуктов из ответа сервера
