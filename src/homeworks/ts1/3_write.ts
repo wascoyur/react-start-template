@@ -12,7 +12,7 @@ type Category = {
   name: string;
   photo?: string;
 };
-export type Product = {
+export type typeProduct = {
   id: string;
   name: string;
   photo?: string;
@@ -106,10 +106,10 @@ const getRandomProducts = () => {
 
 export const createRandomProduct = (createdAt: string) => {
   const mockProducts: fakeProduct[] = getRandomProducts();
-  const products: Product[] = mockProducts.map((item) => {
+  const products: typeProduct[] = mockProducts.map((item) => {
     const { id, description, image, title, price, category } = item;
     const oldPrice = parseInt((parseInt(price) * Math.random() * 10).toFixed(2));
-    const product: Product = {
+    const product: typeProduct = {
       desc: description,
       name: title,
       photo: image,

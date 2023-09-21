@@ -1,4 +1,4 @@
-import { createRandomProduct, Product } from 'src/homeworks/ts1/3_write';
+import { createRandomProduct, typeProduct } from 'src/homeworks/ts1/3_write';
 
 const data = [
   {
@@ -266,12 +266,13 @@ export const getData = () => {
   return data;
 };
 export type mockProductGen = {
-  currentListProducts: Array<Product>;
+  currentListProducts: Array<typeProduct>;
 };
-export const arrayMockProductsGenerate = (): Array<Product> => {
-  const count = 1; /*Math.floor(Math.random() * 91) + 10;*/
-  const products: Array<Product> = Array.from({ length: count }, (_, index) =>
-    createRandomProduct(Date.now().toString())
-  );
-  return products;
+export const arrayMockProductsGenerate = async (): Promise<typeProduct> => {
+  let current: typeProduct = null;
+  setTimeout(() => {
+    current = products();
+  }, 500000);
+  const products = () => createRandomProduct(String(Date.now()));
+  return current;
 };

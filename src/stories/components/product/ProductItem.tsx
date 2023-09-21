@@ -1,11 +1,11 @@
 import classNames from 'classnames';
 import React from 'react';
-import { Product } from 'src/homeworks/ts1/3_write';
+import { typeProduct } from 'src/homeworks/ts1/3_write';
 import './product-list.scss';
 import { useStore } from 'src/store/store';
 import { Link } from 'react-router-dom';
 
-type typeProductItem = { item: Product; itemClssNames?: string };
+type typeProductItem = { item: typeProduct; itemClssNames?: string };
 export const ProductItem = (props: typeProductItem) => {
   const {
     item: { name, price, category },
