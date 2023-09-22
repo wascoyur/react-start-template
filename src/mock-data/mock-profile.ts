@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import * as process from 'process';
+import { useStore } from 'src/store/store';
 
-export const useGetRandomUser = (userId = 1) => {
+export const useUserStore = (userId = 1) => {
   const [user, setUser] = useState(null);
-  const idx = Math.floor(Math.random() * 20) + 1;
-  console.log(process.env);
+  const idx = Math.floor(Math.random() * 99) + 1;
+  const { setUserLogged } = useStore();
 
   useEffect(() => {
-    const getRandomUser = async () => {
+    const fetchUserById = async () => {
       try {
         const response = await fetch(`${process.env.API_URL}/users/${userId ? userId : idx}`);
         if (!response.ok) {
@@ -15,15 +16,16 @@ export const useGetRandomUser = (userId = 1) => {
         }
         const data = await response.json();
         setUser(data);
+        setUserLogged(data);
       } catch (error) {
         console.error(error);
         setUser(null);
       }
     };
 
-    getRandomUser();
+    fetchUserById();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return user;
+  return { user };
 };

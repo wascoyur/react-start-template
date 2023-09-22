@@ -48,7 +48,7 @@ export const ProductItem = (props: typeProductItem) => {
     </Link>
   );
   const IconAction = () => {
-    const icon = token.tokenAdmin.length ? <IconEdit /> : <IconView />;
+    const icon = token.tokenAdmin ? <IconEdit /> : <IconView />;
     return <div>{icon}</div>;
   };
 

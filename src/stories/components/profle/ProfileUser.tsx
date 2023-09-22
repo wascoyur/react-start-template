@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useGetRandomUser } from 'src/mock-data/mock-profile';
+import { useUserStore } from 'src/mock-data/mock-profile';
 import Loader from 'src/stories/components/share/Loader';
 import 'src/stories/components/scss/profile-card.scss';
 import ModalWindow from 'src/stories/components/modal/ModalWindow';
@@ -9,11 +9,11 @@ import { RegisterUser } from 'src/stories/components/profle/RegisterUser';
 export const ProfileUser = () => {
   // const [toChangePass, setToChangePass] = useState<boolean>(false);
   const [toChangeProfile, setToChangeProfile] = useState<boolean>(false);
-  const [randomUser, setRandomUser] = useState<typeUserProfile | null>(null);
-  const user = useGetRandomUser();
+  const [loggedUser, setLoggedUser] = useState<typeUserProfile | null>(null);
+  const { user } = useUserStore();
 
   useEffect(() => {
-    setRandomUser(user);
+    setLoggedUser(user);
   }, [user]);
 
   const handleProfile = () => {
@@ -27,9 +27,9 @@ export const ProfileUser = () => {
   return (
     <div className="profile-container">
       <h2>Profile</h2>
-      {randomUser ? (
+      {loggedUser ? (
         <div>
-          <ProfileCard user={randomUser} onEditProfile={handleProfile} />
+          <ProfileCard user={loggedUser} onEditProfile={handleProfile} />
         </div>
       ) : (
         <Loader />
