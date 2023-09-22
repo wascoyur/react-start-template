@@ -8,13 +8,7 @@ import { useStore } from 'src/store/store';
 
 export type typeProductList = { listClssNames?: string; itemClssNames?: string };
 
-interface ApiResponse {
-  limit: number;
-  skip: number;
-  total: number;
-  product: Array<ApiResponseProduct>;
-}
-interface ApiResponseProduct {
+export interface ApiResponseProduct {
   id: number;
   title: string;
   description: string;
@@ -32,39 +26,54 @@ export const ProductList: React.FC<typeProductList> = (props) => {
   const { listClssNames = 'product-list', itemClssNames = 'product-item' } = props;
   const [productList, setProductList] = useState<typeProduct[]>([]); // Изменил на массив пустых товаров
   const [loading, setLoading] = useState<boolean>(true);
-  const productStore = useStore();
+  const { setRawProducts, rawProducts } = useStore();
 
   const getProducts = async () => {
     await fetch('https://dummyjson.com/products')
       .then((r) => {
-        const data = r.json();
-        return data;
+        return r.json();
       })
       .then((data) => {
-        console.log(data);
-        productStore.setProducts(data.products);
+        setRawProducts(data.products);
       })
-      .then(() => setLoading(false))
       .catch((err) => console.error(err));
   };
 
   useEffect(() => {
-    if (!productStore.products) getProducts();
+    async function getRawProduct() {
+      await getProducts().catch((err) => {
+        setLoading(false);
+        console.error(err);
+      });
+    }
+    if (!rawProducts)
+      getRawProduct().catch((err) => {
+        setLoading(false);
+        console.error(err);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (rawProducts && productList.length < 1) {
+      setProductList(createProductHelper(rawProducts));
+      setLoading(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rawProducts]);
 
   // Функция для создания продуктов из ответа сервера
   const createProductHelper = (response: ApiResponseProduct[]) => {
-    console.log(response);
-    return response.map((cur, index) => {
+    const res = response.map((cur, index) => {
       const {
         thumbnail,
         id: ids,
-        brand,
-        discountPercentage,
-        images,
+        // brand,
+        // discountPercentage,
+        // images,
         price,
         category,
-        rating,
+        // rating,
         title,
         description,
       } = cur;
@@ -76,12 +85,13 @@ export const ProductList: React.FC<typeProductList> = (props) => {
         photo: thumbnail,
         createdAt: Date.now().toString(),
         category: {
-          id: index, // У вас здесь должен быть ID категории
-          name: category, // У вас здесь должно быть название категории
-          photo: '', // У вас здесь должна быть фотография категории
+          id: index,
+          name: category,
+          photo: '',
         },
       };
     });
+    return res as unknown as Array<typeProduct>;
   };
 
   const ListItems = () => {

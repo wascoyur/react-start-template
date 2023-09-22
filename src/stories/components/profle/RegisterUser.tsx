@@ -45,7 +45,7 @@ export const RegisterUser = (props: propsShareForm) => {
 
   return (
     <div className={classNames(customStyle)}>
-      <div className="title-forms">Зарегистрировать нового пользователя</div>
+      <div className="title-forms">Изменения профиля пользователя</div>
       <Formik
         initialValues={{ useralias: '', email: '', password: '', about: '' }}
         onSubmit={(values) => {

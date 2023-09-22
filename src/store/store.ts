@@ -1,21 +1,21 @@
 import { create } from 'zustand';
-import { typeProduct } from 'src/homeworks/ts1/3_write';
+import { ApiResponseProduct } from 'src/homeworks/homework-5/ProductList';
 
 type TokenStore = {
   tokenUser: string;
   user: unknown;
   tokenAdmin: string;
-  products: Array<typeProduct>;
+  rawProducts: Array<ApiResponseProduct>;
   setTokenUser: (token: string) => void;
   setTokenAdmin: (token: string) => void;
   clearTokens: () => void;
-  setProducts: (arr: Array<typeProduct>) => void;
+  setRawProducts: (arr: Array<ApiResponseProduct>) => void;
 };
 export const useStore = create<TokenStore>()((set) => ({
   tokenUser: '',
   tokenAdmin: '',
   user: '',
-  products: null,
+  rawProducts: null,
   setTokenUser: (newToken: string) => set(() => ({ tokenUser: newToken })),
   setTokenAdmin: (newTokenAdm: string) => set(() => ({ tokenAdmin: newTokenAdm })),
   clearTokens: () =>
@@ -23,5 +23,5 @@ export const useStore = create<TokenStore>()((set) => ({
       tokenUser: '',
       tokenAdmin: '',
     })),
-  setProducts: (arr: Array<typeProduct>) => set(() => ({ products: arr })),
+  setRawProducts: (arr: Array<ApiResponseProduct>) => set(() => ({ rawProducts: arr })),
 }));

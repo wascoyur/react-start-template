@@ -4,6 +4,7 @@ import Loader from 'src/stories/components/share/Loader';
 import 'src/stories/components/scss/profile-card.scss';
 import ModalWindow from 'src/stories/components/modal/ModalWindow';
 import { typeUserProfile, typeUserProfileCardProps } from 'src/types/typeUserProfile';
+import { RegisterUser } from 'src/stories/components/profle/RegisterUser';
 
 export const ProfileUser = () => {
   // const [toChangePass, setToChangePass] = useState<boolean>(false);
@@ -35,12 +36,8 @@ export const ProfileUser = () => {
       )}
 
       {toChangeProfile && (
-        <ModalWindow visible={true} onCloseModal={handleCloseModal}>
-          {/* Здесь вы можете разместить содержимое модального окна */}
-          <div>
-            <h3>Редактирование профиля</h3>
-            {/* Добавьте поля для редактирования профиля */}
-          </div>
+        <ModalWindow visible={true} onCloseModal={handleCloseModal} modalContent={<h3>Редактирование профиля</h3>}>
+          <RegisterUser />
         </ModalWindow>
       )}
     </div>
