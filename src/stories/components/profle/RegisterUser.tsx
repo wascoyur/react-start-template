@@ -3,9 +3,14 @@ import { Field, Form, Formik, FormikErrors } from 'formik';
 import React from 'react';
 import { PrfileForm, propsShareForm } from 'src/stories/components/profle/RedoUserProfileForm';
 import '../scss/common-form.scss';
+import { useStore } from 'src/store/store';
 
 export const RegisterUser = (props: propsShareForm) => {
   const { customStyle = 'default-style' } = props;
+  const { loggedUser } = useStore();
+  const { username, email, about } = loggedUser;
+  const {} = useStore();
+
   let errors: FormikErrors<PrfileForm> = {};
   const validate = (values: PrfileForm) => {
     errors = {};
@@ -47,7 +52,7 @@ export const RegisterUser = (props: propsShareForm) => {
     <div className={classNames(customStyle)}>
       <div className="title-forms">Изменения профиля пользователя</div>
       <Formik
-        initialValues={{ useralias: '', email: '', password: '', about: '' }}
+        initialValues={{ useralias: username, email: email, password: '', about: about }}
         onSubmit={(values) => {
           console.log(values);
         }}

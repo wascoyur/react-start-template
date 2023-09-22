@@ -5,39 +5,20 @@ import ModalWindow from 'src/stories/components/modal/ModalWindow';
 import { userProfile, typeUserProfileCardProps, ExternalUserProfile } from 'src/types/userProfile';
 import { RegisterUser } from 'src/stories/components/profle/RegisterUser';
 import { useStore } from 'src/store/store';
+import { createUserHelper } from 'src/common-functions/userHelper';
 
 export const ProfileUser = () => {
   // const [toChangePass, setToChangePass] = useState<boolean>(false);
   const [toChangeProfile, setToChangeProfile] = useState<boolean>(false);
-  const [loggedUser, setLoggedUser] = useState<userProfile | null>(null);
-  const { user } = useStore();
+  // const [user, setUser] = useState<userProfile | null>(null);
+  const { userExternal, setLoggedUser, loggedUser } = useStore((store) => store);
 
   useEffect(() => {
-    user && setLoggedUser(createUserHelper(user));
-  }, [user]);
+    userExternal && setLoggedUser(createUserHelper(userExternal));
+  }, [userExternal]);
 
   const handleProfile = () => {
     setToChangeProfile(true);
-  };
-  const createUserHelper = (data: ExternalUserProfile): userProfile => {
-    let user = {} as userProfile;
-    user = {
-      address: {
-        city: data.address.city,
-        geo: { lat: data.address.coordinates.lat, lng: data.address.coordinates.lng },
-        street: data.address.address,
-        suite: '',
-        zipcode: data.address.postalCode,
-      },
-      company: { bs: data.company.department, catchPhrase: '', name: data.company.title },
-      email: data.email,
-      id: data.id,
-      phone: data.phone,
-      username: data.username,
-      website: '',
-      name: data.firstName,
-    };
-    return user;
   };
 
   function handleCloseModal() {
@@ -67,14 +48,18 @@ export const ProfileUser = () => {
 export const ProfileCard: React.FC<typeUserProfileCardProps> = ({ user, onEditProfile }) => {
   return (
     <div className="profile-card">
-      <div className="field">Имя пользователя</div>
+      <div className="field">Имя </div>
       <div className="field-value">{user.name}</div>
-      <div className="field">Псевдоним пользователя</div>
+      <div className="field">Псевдоним </div>
       <div className="field-value">{user.username}</div>
-      <div className="field">Телефон пользователя</div>
+      <div className="field">Телефон </div>
       <div className="field-value">{user.phone}</div>
-      <div className="field">Электронная почта пользователя</div>
+      <div className="field">email</div>
       <div className="field-value">{user.email}</div>
+      <div className="field">Компания</div>
+      <div className="field-value">{user.company.name}</div>
+      <div className="field">Город</div>
+      <div className="field-value">{user.address.city}</div>
       <button onClick={onEditProfile}>Редактировать профиль</button>
     </div>
   );

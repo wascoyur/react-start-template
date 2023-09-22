@@ -13,6 +13,7 @@ export type userProfile = {
   phone: string;
   website: string;
   company: { name: string; catchPhrase: string; bs: string };
+  about?: string;
 };
 export type typeUserProfileCardProps = {
   user: userProfile;

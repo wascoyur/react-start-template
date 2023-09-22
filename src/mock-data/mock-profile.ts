@@ -6,7 +6,7 @@ import { ExternalUserProfile } from 'src/types/userProfile';
 export const useUserStore = (userId?: number) => {
   const [user, setUser] = useState<ExternalUserProfile>(null);
   const idx = Math.floor(Math.random() * 99) + 1;
-  const { setUserLogged } = useStore();
+  const { setExternalUser } = useStore();
 
   useEffect(() => {
     const fetchUserById = async () => {
@@ -17,13 +17,12 @@ export const useUserStore = (userId?: number) => {
         }
         const data = await response.json();
         setUser(data);
-        setUserLogged(data);
+        setExternalUser(data);
       } catch (error) {
         console.error(error);
         setUser(null);
       }
     };
-
     fetchUserById();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
