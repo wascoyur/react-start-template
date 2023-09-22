@@ -12,9 +12,11 @@ import { AddProductForm } from 'src/stories/components/product/AddProductForm';
 import { ProductCard } from 'src/stories/components/cards-product/ProductCard';
 import { RegisterUser } from 'src/stories/components/profle/RegisterUser';
 import { useUserAuth } from 'src/components/hooks/isAuth';
+import { useUserStore } from 'src/mock-data/mock-profile';
 
 function App() {
   const isUserAuth = useUserAuth();
+  useUserStore();
   const AppHeader = () => {
     return (
       <Header>

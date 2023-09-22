@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import * as process from 'process';
 import { useStore } from 'src/store/store';
+import { ExternalUserProfile } from 'src/types/userProfile';
 
-export const useUserStore = (userId = 1) => {
-  const [user, setUser] = useState(null);
+export const useUserStore = (userId?: number) => {
+  const [user, setUser] = useState<ExternalUserProfile>(null);
   const idx = Math.floor(Math.random() * 99) + 1;
   const { setUserLogged } = useStore();
 
@@ -26,6 +27,4 @@ export const useUserStore = (userId = 1) => {
     fetchUserById();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  return { user };
 };

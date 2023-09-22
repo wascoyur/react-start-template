@@ -1,4 +1,4 @@
-export type typeUserProfile = {
+export type userProfile = {
   id: number;
   name: string;
   username: string;
@@ -15,11 +15,11 @@ export type typeUserProfile = {
   company: { name: string; catchPhrase: string; bs: string };
 };
 export type typeUserProfileCardProps = {
-  user: typeUserProfile;
+  user: userProfile;
   onEditProfile: () => void;
 };
 
-export interface UserProfile {
+export interface ExternalUserProfile {
   id: number;
   firstName: string;
   lastName: string;

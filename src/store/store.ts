@@ -1,17 +1,17 @@
 import { create } from 'zustand';
 import { ApiResponseProduct } from 'src/homeworks/homework-5/ProductList';
-import { UserProfile } from 'src/types/typeUserProfile';
+import { ExternalUserProfile } from 'src/types/userProfile';
 
 type Store = {
   tokenUser: string;
-  user: UserProfile;
+  user: ExternalUserProfile;
   tokenAdmin: string;
   rawProducts: Array<ApiResponseProduct>;
   setTokenUser: (token: string) => void;
   setTokenAdmin: (token: string) => void;
   clearTokens: () => void;
   setRawProducts: (arr: Array<ApiResponseProduct>) => void;
-  setUserLogged: (user: UserProfile) => void;
+  setUserLogged: (user: ExternalUserProfile) => void;
 };
 export const useStore = create<Store>()((set) => ({
   tokenUser: null,
@@ -26,5 +26,5 @@ export const useStore = create<Store>()((set) => ({
       tokenAdmin: null,
     })),
   setRawProducts: (arr: Array<ApiResponseProduct>) => set(() => ({ rawProducts: arr })),
-  setUserLogged: (user: UserProfile) => set(() => ({ user })),
+  setUserLogged: (user: ExternalUserProfile) => set(() => ({ user })),
 }));

@@ -1,23 +1,43 @@
 import React, { useEffect, useState } from 'react';
-import { useUserStore } from 'src/mock-data/mock-profile';
 import Loader from 'src/stories/components/share/Loader';
 import 'src/stories/components/scss/profile-card.scss';
 import ModalWindow from 'src/stories/components/modal/ModalWindow';
-import { typeUserProfile, typeUserProfileCardProps } from 'src/types/typeUserProfile';
+import { userProfile, typeUserProfileCardProps, ExternalUserProfile } from 'src/types/userProfile';
 import { RegisterUser } from 'src/stories/components/profle/RegisterUser';
+import { useStore } from 'src/store/store';
 
 export const ProfileUser = () => {
   // const [toChangePass, setToChangePass] = useState<boolean>(false);
   const [toChangeProfile, setToChangeProfile] = useState<boolean>(false);
-  const [loggedUser, setLoggedUser] = useState<typeUserProfile | null>(null);
-  const { user } = useUserStore();
+  const [loggedUser, setLoggedUser] = useState<userProfile | null>(null);
+  const { user } = useStore();
 
   useEffect(() => {
-    setLoggedUser(user);
+    user && setLoggedUser(createUserHelper(user));
   }, [user]);
 
   const handleProfile = () => {
     setToChangeProfile(true);
+  };
+  const createUserHelper = (data: ExternalUserProfile): userProfile => {
+    let user = {} as userProfile;
+    user = {
+      address: {
+        city: data.address.city,
+        geo: { lat: data.address.coordinates.lat, lng: data.address.coordinates.lng },
+        street: data.address.address,
+        suite: '',
+        zipcode: data.address.postalCode,
+      },
+      company: { bs: data.company.department, catchPhrase: '', name: data.company.title },
+      email: data.email,
+      id: data.id,
+      phone: data.phone,
+      username: data.username,
+      website: '',
+      name: data.firstName,
+    };
+    return user;
   };
 
   function handleCloseModal() {
