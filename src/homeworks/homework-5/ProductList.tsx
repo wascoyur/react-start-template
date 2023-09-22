@@ -29,7 +29,7 @@ export const ProductList: React.FC<typeProductList> = (props) => {
   const { setRawProducts, rawProducts } = useStore();
 
   const getProducts = async () => {
-    await fetch('https://dummyjson.com/products')
+    await fetch(`${process.env.API_URL}/products`)
       .then((r) => {
         return r.json();
       })

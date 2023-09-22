@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
+import * as process from 'process';
 
-export const useGetRandomUser = () => {
+export const useGetRandomUser = (userId = 1) => {
   const [user, setUser] = useState(null);
+  const idx = Math.floor(Math.random() * 20) + 1;
+  console.log(process.env);
 
   useEffect(() => {
     const getRandomUser = async () => {
       try {
-        const idx = Math.floor(Math.random() * 20) + 1;
-        const response = await fetch(`https://jsonplaceholder.typicode.com/users/${idx}`);
+        const response = await fetch(`${process.env.API_URL}/users/${userId ? userId : idx}`);
         if (!response.ok) {
           throw new Error('Ошибка при получении данных');
         }
@@ -20,6 +22,7 @@ export const useGetRandomUser = () => {
     };
 
     getRandomUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return user;
