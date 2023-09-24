@@ -4,18 +4,19 @@ import React from 'react';
 import { PrfileForm, propsShareForm } from 'src/stories/components/profle/RedoUserProfileForm';
 import '../scss/common-form.scss';
 import { useStore } from 'src/store/store';
+import { userProfile } from 'src/types/userProfile';
 
 export const RegisterUser = (props: propsShareForm) => {
   const { customStyle = 'default-style' } = props;
-  const { loggedUser } = useStore();
+  const loggedUser = useStore((store) => store.loggedUser);
   const { username, email, about } = loggedUser;
-  const {} = useStore();
+  const editLoggedUser = useStore((state) => state.editLoggedUser);
 
   let errors: FormikErrors<PrfileForm> = {};
   const validate = (values: PrfileForm) => {
     errors = {};
-    if (!values.useralias) {
-      errors.useralias = `Укажите ваш псевдоним`;
+    if (!values.username) {
+      errors.username = `Укажите ваш псевдоним`;
     }
     if (!values.email || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
       errors.email = `Проверьте правильность написания почтового адреса`;
@@ -24,10 +25,10 @@ export const RegisterUser = (props: propsShareForm) => {
       errors.about = `Необходимо заполнить раздел "О себе"`;
     }
     if (!values.password) {
-      errors.password = `Необходимо указать пароль`;
+      // errors.password = `Необходимо указать пароль`;
     }
     if (values.password) {
-      validatePassword(values);
+      // validatePassword(values);
     }
 
     return errors;
@@ -52,17 +53,17 @@ export const RegisterUser = (props: propsShareForm) => {
     <div className={classNames(customStyle)}>
       <div className="title-forms">Изменения профиля пользователя</div>
       <Formik
-        initialValues={{ useralias: username, email: email, password: '', about: about }}
+        initialValues={{ username: username, email: email, password: '', about: about }}
         onSubmit={(values) => {
-          console.log(values);
+          editLoggedUser(values as unknown as userProfile);
         }}
         validate={validate}
       >
         {({ errors }) => (
           <Form>
-            <label htmlFor="useralias">Ваш псевдоним</label>
-            <Field name="useralias" />
-            {errors.useralias ? <div className="validate-message">{errors.useralias}</div> : null}
+            <label htmlFor="username">Ваш псевдоним</label>
+            <Field name="username" />
+            {errors.username ? <div className="validate-message">{errors.username}</div> : null}
 
             <label htmlFor="email">Ваш email</label>
             <Field name="email" type="email" />

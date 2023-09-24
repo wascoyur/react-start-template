@@ -7,7 +7,7 @@ export type propsShareForm = {
   customStyle?: string[];
 };
 export type PrfileForm = {
-  useralias: string;
+  username: string;
   about: string;
   email: string;
   password: string;
@@ -17,17 +17,17 @@ export const RedoUserProfileForm = (props: propsShareForm) => {
   const { customStyle = 'default-style' } = props;
   const validate = (values: PrfileForm) => {
     const errors: FormikErrors<PrfileForm> = {};
-    if (!values.useralias) {
-      errors.useralias = `Необходимо указать свой псевдоним`;
+    if (!values.username) {
+      errors.username = `Необходимо указать свой псевдоним`;
     }
-    if (values.useralias.length < 5) {
-      errors.useralias = `Количество символов в псевдониме должно быть более 5`;
+    if (values.username.length < 5) {
+      errors.username = `Количество символов в псевдониме должно быть более 5`;
     }
     return errors;
   };
   const formik = useFormik<PrfileForm>({
     initialValues: {
-      useralias: '',
+      username: '',
       about: '',
       email: '',
       password: '',
@@ -43,7 +43,7 @@ export const RedoUserProfileForm = (props: propsShareForm) => {
       <form onSubmit={formik.handleSubmit}>
         <label htmlFor="useralias">Псевдоним</label>
         <input
-          className={classNames(formik.errors.useralias ? 'input-error' : '')}
+          className={classNames(formik.errors.username ? 'input-error' : '')}
           id="useralias"
           name="useralias"
           type="text"
@@ -51,10 +51,10 @@ export const RedoUserProfileForm = (props: propsShareForm) => {
             formik.handleChange(e);
             formik.setErrors({});
           }}
-          value={formik.values.useralias}
+          value={formik.values.username}
           placeholder="Придумайте себе псевдоним"
         />
-        {formik.errors.useralias ? <div className="validate-message">{formik.errors.useralias}</div> : null}
+        {formik.errors.username ? <div className="validate-message">{formik.errors.username}</div> : null}
         <label htmlFor="about">О себе</label>
         <textarea
           id="about"
