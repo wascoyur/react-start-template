@@ -1,6 +1,6 @@
 import React from 'react';
-import { RedoUserProfileForm } from './components/hw-6-Forms/RedoUserProfileForm';
-import { SecurityUserForm } from './components/hw-6-Forms/SecurityUserForm';
+import { RedoUserProfileForm } from 'src/stories/components/profle/RedoUserProfileForm';
+import { ChangeUserPassword } from 'src/stories/components/profle/ChangeUserPassword';
 import { Divider } from './components/share/Divider';
 
 export default {
@@ -13,7 +13,7 @@ export const AddRedoUserFormS = () => {
     <>
       <RedoUserProfileForm />
       <Divider />
-      <SecurityUserForm />
+      <ChangeUserPassword />
     </>
   );
 };

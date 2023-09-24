@@ -34,7 +34,7 @@ export const ModalWindowS = (props: ModalProps) => {
         <div>
           <Button label={'modal window'} onClick={handleClickButton} size="small" backgroundColor="gray" />
         </div>
-        <ModalWindow onClick={() => setIsVisible(false)} visible={isVisible} modalContent={modalContent}>
+        <ModalWindow onCloseModal={() => setIsVisible(false)} visible={isVisible} modalContent={modalContent}>
           {children}
         </ModalWindow>
       </div>

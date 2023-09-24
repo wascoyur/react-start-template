@@ -3,17 +3,17 @@ import ReactDOM from 'react-dom';
 import './Modal-window.scss';
 
 export type ModalProps = {
-  onClick?: () => void;
+  onCloseModal?: () => void;
   visible: boolean;
   children?: React.ReactNode;
   modalContent?: React.ReactNode;
 };
 
 const ModalWindow = (props: ModalProps) => {
-  const { children, onClick, visible, modalContent = `Something happend...` } = props;
+  const { children, onCloseModal, visible, modalContent = `Something happend...` } = props;
   const [isVisible, setIsVisible] = useState<boolean>(visible);
   const onClose = () => {
-    onClick && onClick();
+    onCloseModal && onCloseModal();
     setIsVisible(false);
   };
   const modal = () => {
@@ -25,7 +25,7 @@ const ModalWindow = (props: ModalProps) => {
               X
             </div>
           </div>
-          {<div className="content">{modalContent || <div>Поле ввода пустое...</div>}</div>}
+          {<div className="content">{children || <div>{modalContent}</div>}</div>}
         </div>
       </div>
     );

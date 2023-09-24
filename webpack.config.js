@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const port = 2233;
 const dist = path.join(__dirname, 'dist');
@@ -12,7 +13,7 @@ const host = 'localhost';
 module.exports = (_, args) => {
   return {
     entry: './index.tsx',
-    devtool: 'source-map',
+    devtool: 'inline-source-map',
     context: src,
     devServer: {
       open: true,
@@ -20,6 +21,9 @@ module.exports = (_, args) => {
       hot: true,
       historyApiFallback: true,
       host,
+      server: {
+        type: 'https',
+      },
     },
     resolve: {
       modules: [src, 'node_modules'],
@@ -31,15 +35,15 @@ module.exports = (_, args) => {
     output: {
       path: dist,
       publicPath:
-        args.mode === 'development' ? `https://wascoyur.github.io/yuriy.vasilev/` : undefined /* <- прописать данные своего github */,
+        args.mode === 'development' ? `https://${host}:${port}/` : undefined /* <- прописать данные своего github */,
       filename: `js/[name].js`,
       chunkFilename: `js/[name].js`,
     },
     module: {
       rules: [
         {
-          test: /\.(js|ts)x?$/,
-          loader: require.resolve('babel-loader'),
+          test: /\.([cm]?ts|tsx)$/,
+          loader: 'ts-loader',
           exclude: /node_modules/,
         },
         {
@@ -102,6 +106,7 @@ module.exports = (_, args) => {
           configFile: path.join(__dirname, 'tsconfig.json'),
         },
       }),
+      new Dotenv(),
     ],
   };
 };

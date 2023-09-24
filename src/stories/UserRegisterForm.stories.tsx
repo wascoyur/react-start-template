@@ -1,15 +1,15 @@
 import React from 'react';
-import { UserRegisterForm } from './components/hw-6-Forms/UserRegisterForm';
+import { RegisterUser } from 'src/stories/components/profle/RegisterUser';
 
 export default {
   title: 'Форма регистрации пользователя',
-  component: UserRegisterForm,
+  component: RegisterUser,
 };
 
 export const UserRegisterFormS = () => {
   return (
     <>
-      <UserRegisterForm />
+      <RegisterUser />
     </>
   );
 };
