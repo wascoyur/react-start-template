@@ -2,12 +2,14 @@ import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import { ApiResponseProduct } from 'src/homeworks/homework-5/ProductList';
 import { ExternalUserProfile, userProfile } from 'src/types/userProfile';
+import { TypeProduct } from 'src/types/typeProduct';
 
 type Store = {
   tokenUser: string;
   userExternal: ExternalUserProfile;
   loggedUser: userProfile;
   tokenAdmin: string;
+  bucket: Array<TypeProduct>;
   rawProducts: Array<ApiResponseProduct>;
   setTokenUser: (token: string) => void;
   setTokenAdmin: (token: string) => void;
@@ -16,6 +18,7 @@ type Store = {
   setExternalUser: (user: ExternalUserProfile) => void;
   setLoggedUser: (user: userProfile) => void;
   editLoggedUser: (user: userProfile) => void;
+  addProductToBucket: (product: TypeProduct) => void;
 };
 export const useStore = create(
   immer<Store>((set, get) => ({
@@ -24,6 +27,7 @@ export const useStore = create(
     userExternal: null,
     rawProducts: null,
     loggedUser: null,
+    bucket: null,
     setTokenUser: (newToken: string) => set(() => ({ tokenUser: newToken })),
     setTokenAdmin: (newTokenAdm: string) => set(() => ({ tokenAdmin: newTokenAdm })),
     clearTokens: () =>
@@ -43,5 +47,10 @@ export const useStore = create(
         state.loggedUser.about = user.about;
       });
     },
+    addProductToBucket: (product: TypeProduct) =>
+      set((state) => {
+        const currentBucket = get().bucket || new Array<TypeProduct>();
+        state.bucket = [...currentBucket, product];
+      }),
   }))
 );

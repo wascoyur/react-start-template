@@ -19,7 +19,6 @@ export const ProfileUser = () => {
   useEffect(() => {
     userExternal && !loggedUser && setLoggedUser(newUser);
   }, [newUser, loggedUser]);
-  console.log(loggedUser);
 
   const handleProfile = () => {
     setToChangeProfile(true);

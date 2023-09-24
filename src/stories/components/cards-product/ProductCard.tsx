@@ -2,15 +2,8 @@ import React from 'react';
 import mockImage from '../../assets/products/card-img.jpg';
 import { InCartButton } from '../in-cart-button/InCartButton';
 import './product-card.scss';
+import { TypeProduct } from 'src/types/typeProduct';
 
-export type TypeProduct = {
-  id?: number;
-  title?: React.ReactNode | string;
-  category?: string;
-  description?: React.ReactNode | string;
-  img_url?: string;
-  price?: number;
-};
 export const ProductCard = (props: TypeProduct) => {
   const { description, title, price, category } = props;
   const Title = () => {
