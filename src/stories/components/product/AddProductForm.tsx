@@ -12,8 +12,8 @@ export const AddProductForm = (props: propsShareForm) => {
 
   const validate = (values: TypeProduct) => {
     const errors: FormikErrors<TypeProduct> = {};
-    if (!values.title) {
-      errors.title = `Необходимо указать название товара`;
+    if (!values.name) {
+      errors.name = `Необходимо указать название товара`;
     }
     if (!values.desc) {
       errors.desc = `Необходимо добавить описание товара`;
@@ -34,7 +34,7 @@ export const AddProductForm = (props: propsShareForm) => {
     <div className={classNames(customStyle)}>
       <div className="title-forms">Добавить новый товар</div>
       <Formik
-        initialValues={{ title: '', category: null, desc: '', price: 0, img_url: '', id: 0, brand: '' }}
+        initialValues={{ name: '', category: null, desc: '', price: 0, img_url: '', id: 0, brand: '' }}
         onSubmit={(values) => {
           console.log(values);
         }}
@@ -44,7 +44,7 @@ export const AddProductForm = (props: propsShareForm) => {
           <Form>
             <label htmlFor="title">Название товара</label>
             <Field name="title" />
-            {errors.title ? <div className="validate-message">{errors.title}</div> : null}
+            {errors.name ? <div className="validate-message">{errors.name}</div> : null}
 
             <label htmlFor="price">Цена товара</label>
             <Field name="price" type="number" />

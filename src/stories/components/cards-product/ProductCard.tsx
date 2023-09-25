@@ -1,48 +1,64 @@
-import React from 'react';
-import mockImage from '../../assets/products/card-img.jpg';
+import React, { useEffect, useState } from 'react';
 import { InCartButton } from '../in-cart-button/InCartButton';
 import './product-card.scss';
 import { useStore } from 'src/store/state';
 import { useParams } from 'react-router-dom';
+import Loader from 'src/stories/components/share/Loader';
 
 export const ProductCard = () => {
-  const { params } = useParams();
-  const { getProductById } = useGetProduct();
-  const id = parseInt(params);
-  console.log(params);
-  const product = getProductById(id);
-  const { desc, title, price, category } = product;
+  const { productId } = useParams();
+  const [loading, setLoading] = useState<boolean>(true); // Изначально устанавливаем loading в true
+  const { getProductById, addToBucket } = useGetProduct();
+  const product = getProductById(parseInt(productId));
+  const { desc, name, price, category } = product || {}; // Добавляем проверку на существование product
+
+  useEffect(() => {
+    if (product) {
+      setLoading(false); // Если product существует, устанавливаем loading в false
+    }
+  }, [product]);
+
+  const setCountProducts = (count: number) => {
+    return count;
+  };
 
   const Title = () => {
-    return <div className="product-card-title">{title || `The Title product`}</div>;
+    return <div className="product-card-title">{name}</div>;
   };
   const Description = () => {
     return <div className="product-card-description">{desc || `Dedcription Product`}</div>;
   };
 
   const Category = () => {
-    return <div className="product-card-category">{category.name}</div>;
+    return <div className="product-card-category">{category?.name || ''}</div>; // Добавляем проверку на существование category и name
   };
 
-  const Pay = () => {
-    return <div className="product-card-price">{price || 123}р.</div>;
+  const Price = () => {
+    return <div className="product-card-price">{price}р.</div>;
   };
-
+  //todo:реализовать счетчик товаров в корзине
   return (
     <div className="product-card">
-      <Title />
-      <ProductImage img_url={mockImage} />
-      <div className="product-info-wrapper">
-        <Category />
-        <Description />
-        <Pay />
-        <div className="in-cart-wrapper">
-          <InCartButton />
-        </div>
-      </div>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <Title />
+          <ProductImage img_url={product.img_url} />
+          <div className="product-info-wrapper">
+            <Category />
+            <Description />
+            <Price />
+            <div className="in-cart-wrapper">
+              <InCartButton countProducts={setCountProducts} />
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
+
 export const ProductImage = (props: { img_url: string }) => {
   return (
     <div className="product-image">
@@ -50,7 +66,9 @@ export const ProductImage = (props: { img_url: string }) => {
     </div>
   );
 };
+
 const useGetProduct = () => {
   const getProductById = useStore((state) => state.getProductById);
-  return { getProductById };
+  const addToBucket = useStore((state) => state.setBucket);
+  return { getProductById, addToBucket };
 };

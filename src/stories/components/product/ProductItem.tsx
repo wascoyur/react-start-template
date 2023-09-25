@@ -8,7 +8,7 @@ import { TypeProduct } from 'src/types/typeProduct';
 type typeProductItem = { item: TypeProduct; itemClssNames?: string };
 export const ProductItem = (props: typeProductItem) => {
   const {
-    item: { title, price, category, id },
+    item: { name, price, category, id },
   } = props;
   const itemClssNames = props.itemClssNames ?? 'product-item';
   const tokenAdmin = useStore((state) => state.tokenAdmin);
@@ -56,7 +56,7 @@ export const ProductItem = (props: typeProductItem) => {
     <div className={classNames(itemClssNames)}>
       <Link to={'product-card'} state={props} style={{ textDecoration: 'none' }}>
         <div className="item-content">
-          <h4>{title}</h4>
+          <h4>{name}</h4>
           <div>{`категория: ${category.name}`}</div>
           <p>Price: {price}</p>
         </div>

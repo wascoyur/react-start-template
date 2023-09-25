@@ -3,10 +3,10 @@ import { Button } from '../button/Button';
 import './in-cart-button.scss';
 
 type propsInCartButton = {
-  count?: number;
+  countProducts: (count: number) => number;
 };
 export const InCartButton = (props: propsInCartButton) => {
-  const { count = 0 } = props;
+  const { countProducts } = props;
 
   const InCart = () => {
     return (
@@ -34,13 +34,10 @@ export const InCartButton = (props: propsInCartButton) => {
   };
   return (
     <div className="add-to-cart-button">
-      {count > 0 ? (
-        <InCart />
-      ) : (
-        <div className="card-count-input">
-          <Input />
-        </div>
-      )}
+      <div className="card-count-input">
+        <Input />
+      </div>
+      <InCart />
     </div>
   );
 };

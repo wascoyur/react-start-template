@@ -20,7 +20,7 @@ export const createProductHelper = (response: ApiResponseProduct[]) => {
       price,
       desc: description,
       name: title,
-      photo: thumbnail,
+      img_url: thumbnail,
       createdAt: Date.now().toString(),
       category: {
         id: index,

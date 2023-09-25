@@ -63,7 +63,7 @@ export const useStore = create(
         state.products = [...currentState, ...products];
       }),
     getProductById: (id: number) => {
-      const allProducts = get().products;
+      const allProducts = get().products || new Array<TypeProduct>();
       return allProducts.filter((p) => p.id == id)[0];
     },
   }))

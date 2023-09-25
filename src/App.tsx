@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Route, Routes, useParams } from 'react-router-dom';
+import { NavLink, Route, Routes } from 'react-router-dom';
 import { PageBucket } from 'src/pages/bucket-page';
 import { ErrorPage } from 'src/pages/error-page';
 import { HomePage } from 'src/pages/home-page';
@@ -37,7 +37,7 @@ function App() {
         <Route path="profile" element={<RedoUserProfileForm />} />
         <Route path="products" element={<ProductPage />} />
         <Route path="products/edit-products" element={<AddProductForm />} />
-        <Route path="products/product-card/" element={<ProductCard />} />
+        <Route path="products/product-card/:productId" element={<ProductCard />} />
 
         <Route path="create-product" element={<AddProductForm />} />
         <Route path="bucket" element={<PageBucket />} />
