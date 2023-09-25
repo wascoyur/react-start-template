@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import * as process from 'process';
-import { useStore } from 'src/store/store';
+import { useStore } from 'src/store/state';
 import { ExternalUserProfile } from 'src/types/userProfile';
 
 export const useUserStore = (userId?: number) => {

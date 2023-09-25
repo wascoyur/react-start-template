@@ -2,26 +2,26 @@ import React from 'react';
 import mockImage from '../../assets/products/card-img.jpg';
 import { InCartButton } from '../in-cart-button/InCartButton';
 import './product-card.scss';
+import { useStore } from 'src/store/state';
+import { useParams } from 'react-router-dom';
 
-export type TypeProduct = {
-  id?: number;
-  title?: React.ReactNode | string;
-  category?: string;
-  description?: React.ReactNode | string;
-  img_url?: string;
-  price?: number;
-};
-export const ProductCard = (props: TypeProduct) => {
-  const { description, title, price, category } = props;
+export const ProductCard = () => {
+  const { params } = useParams();
+  const { getProductById } = useGetProduct();
+  const id = parseInt(params);
+  console.log(params);
+  const product = getProductById(id);
+  const { desc, title, price, category } = product;
+
   const Title = () => {
     return <div className="product-card-title">{title || `The Title product`}</div>;
   };
   const Description = () => {
-    return <div className="product-card-description">{description || `Dedcription Product`}</div>;
+    return <div className="product-card-description">{desc || `Dedcription Product`}</div>;
   };
 
   const Category = () => {
-    return <div className="product-card-category">{category || `category`}</div>;
+    return <div className="product-card-category">{category.name}</div>;
   };
 
   const Pay = () => {
@@ -49,4 +49,8 @@ export const ProductImage = (props: { img_url: string }) => {
       <img src={props.img_url} alt={'product'} />
     </div>
   );
+};
+const useGetProduct = () => {
+  const getProductById = useStore((state) => state.getProductById);
+  return { getProductById };
 };

@@ -3,8 +3,9 @@ import { Field, Form, Formik, FormikErrors } from 'formik';
 import React from 'react';
 import { propsShareForm } from 'src/stories/components/profle/RedoUserProfileForm';
 import productImage from '../../assets/products/card-img.jpg';
-import { ProductImage, TypeProduct } from '../cards-product/ProductCard';
+import { ProductImage } from '../cards-product/ProductCard';
 import '../scss/common-form.scss';
+import { TypeProduct } from 'src/types/typeProduct';
 
 export const AddProductForm = (props: propsShareForm) => {
   const { customStyle = 'default-style' } = props;
@@ -14,14 +15,14 @@ export const AddProductForm = (props: propsShareForm) => {
     if (!values.title) {
       errors.title = `Необходимо указать название товара`;
     }
-    if (!values.description) {
-      errors.description = `Необходимо добавить описание товара`;
+    if (!values.desc) {
+      errors.desc = `Необходимо добавить описание товара`;
     }
     if (!values.price) {
       errors.price = `Необходимо указать цену товара`;
     }
-    if (!values.category) {
-      errors.category = `Необходимо указать категорию товара`;
+    if (!values.category.name) {
+      errors.category.name = `Необходимо указать категорию товара`;
     }
     if (!values.img_url) {
       errors.img_url = `Необходимо добавить изображение товара`;
@@ -33,7 +34,7 @@ export const AddProductForm = (props: propsShareForm) => {
     <div className={classNames(customStyle)}>
       <div className="title-forms">Добавить новый товар</div>
       <Formik
-        initialValues={{ title: '', category: '', description: '', price: 0, img_url: '', id: 0 }}
+        initialValues={{ title: '', category: null, desc: '', price: 0, img_url: '', id: 0, brand: '' }}
         onSubmit={(values) => {
           console.log(values);
         }}
@@ -56,11 +57,11 @@ export const AddProductForm = (props: propsShareForm) => {
               <option value="dog">dog</option>
               <option value="foo">foo</option>
             </Field>
-            {errors.category ? <div className="validate-message">{errors.category}</div> : null}
+            {errors.category.name ? <div className="validate-message">{errors.category.name}</div> : null}
 
             <label htmlFor="description">Описание товара</label>
             <Field name="description" />
-            {errors.description ? <div className="validate-message">{errors.description}</div> : null}
+            {errors.desc ? <div className="validate-message">{errors.desc}</div> : null}
 
             <label htmlFor="url">Изображение товара</label>
             <ProductImage img_url={productImage} />

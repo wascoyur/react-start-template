@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from 'react';
 import '../scss/common-form.scss';
-import { useStore } from 'src/store/store';
+import { useStore } from 'src/store/state';
 import { useNavigate } from 'react-router-dom';
 export const LoginForm = () => {
   const setToken = useStore();

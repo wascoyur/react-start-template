@@ -7,7 +7,7 @@ import { getData } from 'src/mock-data/mock-products';
  * Поэтому в идеале чтобы функции возвращали случайные данные, но в то же время не абракадабру.
  * В целом сделайте так, как вам будет удобно.
  * */
-type Category = {
+export type Category = {
   id: string;
   name: string;
   photo?: string;

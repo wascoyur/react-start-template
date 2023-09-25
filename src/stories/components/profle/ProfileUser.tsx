@@ -4,7 +4,7 @@ import 'src/stories/components/scss/profile-card.scss';
 import ModalWindow from 'src/stories/components/modal/ModalWindow';
 import { userProfile, typeUserProfileCardProps, ExternalUserProfile } from 'src/types/userProfile';
 import { RegisterUser } from 'src/stories/components/profle/RegisterUser';
-import { useStore } from 'src/store/store';
+import { useStore } from 'src/store/state';
 import { createUserHelper } from 'src/common-functions/userHelper';
 
 export const ProfileUser = () => {
@@ -19,7 +19,6 @@ export const ProfileUser = () => {
   useEffect(() => {
     userExternal && !loggedUser && setLoggedUser(newUser);
   }, [newUser, loggedUser]);
-  console.log(loggedUser);
 
   const handleProfile = () => {
     setToChangeProfile(true);

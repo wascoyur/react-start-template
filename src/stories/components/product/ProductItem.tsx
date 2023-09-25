@@ -1,17 +1,17 @@
 import classNames from 'classnames';
 import React from 'react';
-import { typeProduct } from 'src/homeworks/ts1/3_write';
 import './product-list.scss';
-import { useStore } from 'src/store/store';
+import { useStore } from 'src/store/state';
 import { Link } from 'react-router-dom';
+import { TypeProduct } from 'src/types/typeProduct';
 
-type typeProductItem = { item: typeProduct; itemClssNames?: string };
+type typeProductItem = { item: TypeProduct; itemClssNames?: string };
 export const ProductItem = (props: typeProductItem) => {
   const {
-    item: { name, price, category },
+    item: { title, price, category, id },
   } = props;
   const itemClssNames = props.itemClssNames ?? 'product-item';
-  const token = useStore();
+  const tokenAdmin = useStore((state) => state.tokenAdmin);
 
   const IconEdit = () => (
     <Link to={'edit-products'}>
@@ -28,7 +28,7 @@ export const ProductItem = (props: typeProductItem) => {
     </Link>
   );
   const IconView = () => (
-    <Link to={'product-card'} state={props}>
+    <Link to={`product-card/${String(id)}`} state={props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         version="1.1"
@@ -48,7 +48,7 @@ export const ProductItem = (props: typeProductItem) => {
     </Link>
   );
   const IconAction = () => {
-    const icon = token.tokenAdmin ? <IconEdit /> : <IconView />;
+    const icon = tokenAdmin ? <IconEdit /> : <IconView />;
     return <div>{icon}</div>;
   };
 
@@ -56,7 +56,7 @@ export const ProductItem = (props: typeProductItem) => {
     <div className={classNames(itemClssNames)}>
       <Link to={'product-card'} state={props} style={{ textDecoration: 'none' }}>
         <div className="item-content">
-          <h4>{name}</h4>
+          <h4>{title}</h4>
           <div>{`категория: ${category.name}`}</div>
           <p>Price: {price}</p>
         </div>

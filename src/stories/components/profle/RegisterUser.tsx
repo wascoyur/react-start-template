@@ -3,14 +3,17 @@ import { Field, Form, Formik, FormikErrors } from 'formik';
 import React from 'react';
 import { PrfileForm, propsShareForm } from 'src/stories/components/profle/RedoUserProfileForm';
 import '../scss/common-form.scss';
-import { useStore } from 'src/store/store';
+import { useStore } from 'src/store/state';
 import { userProfile } from 'src/types/userProfile';
 
 export const RegisterUser = (props: propsShareForm) => {
+  let username, email, about: string;
   const { customStyle = 'default-style' } = props;
   const loggedUser = useStore((store) => store.loggedUser);
-  const { username, email, about } = loggedUser;
-  const editLoggedUser = useStore((state) => state.editLoggedUser);
+  const setLoggedUser = useStore((state) => state.setLoggedUser);
+  if (loggedUser) {
+    (username = loggedUser.username), (email = loggedUser.email), (about = loggedUser.about);
+  }
 
   let errors: FormikErrors<PrfileForm> = {};
   const validate = (values: PrfileForm) => {
@@ -51,11 +54,12 @@ export const RegisterUser = (props: propsShareForm) => {
 
   return (
     <div className={classNames(customStyle)}>
-      <div className="title-forms">Изменения профиля пользователя</div>
+      <div className="title">{loggedUser ? `Изменения профиля пользователя` : `Регистрация нового пользователя`}</div>
       <Formik
         initialValues={{ username: username, email: email, password: '', about: about }}
-        onSubmit={(values) => {
-          editLoggedUser(values as unknown as userProfile);
+        onSubmit={(user) => {
+          console.log({ user });
+          setLoggedUser(user as unknown as userProfile);
         }}
         validate={validate}
       >

@@ -1,4 +1,4 @@
-import { useStore } from 'src/store/store';
+import { useStore } from 'src/store/state';
 
 export const useUserAuth = () => {
   const { tokenUser, tokenAdmin } = useStore();
