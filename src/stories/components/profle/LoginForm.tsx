@@ -3,7 +3,7 @@ import '../scss/common-form.scss';
 import { useStore } from 'src/store/state';
 import { useNavigate } from 'react-router-dom';
 export const LoginForm = () => {
-  const setToken = useStore();
+  const { setTokenAdmin, setTokenUser } = useStore();
   const [login, setLogin] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [isFilled, setIsFilled] = useState<boolean>(false);
@@ -19,13 +19,14 @@ export const LoginForm = () => {
   const handleLogInUser = (e: FormEvent) => {
     e.preventDefault();
     if (login === 'admin' && password === 'admpass') {
-      setToken.setTokenAdmin(login);
+      setTokenAdmin(login);
       return;
     }
     if (login === 'user' && password === 'password') {
-      setToken.setTokenUser(login);
+      setTokenUser(login);
       return;
     }
+
     navigate('/register');
   };
 

@@ -24,6 +24,7 @@ type Action = {
   setBucket: (product: TypeProduct) => void;
   getProductById: (idProduct: number) => TypeProduct;
   setProducts: (products: Array<TypeProduct>) => void;
+  isUserAuth: () => boolean;
 };
 export const useStore = create(
   immer<State & Action>((set, get) => ({
@@ -65,6 +66,9 @@ export const useStore = create(
     getProductById: (id: number) => {
       const allProducts = get().products || new Array<TypeProduct>();
       return allProducts.filter((p) => p.id == id)[0];
+    },
+    isUserAuth: () => {
+      return Boolean((get().tokenUser || get().tokenAdmin) && Boolean(get().loggedUser?.id));
     },
   }))
 );

@@ -12,7 +12,8 @@ export const RegisterUser = (props: propsShareForm) => {
   const loggedUser = useStore((store) => store.loggedUser);
   const setLoggedUser = useStore((state) => state.setLoggedUser);
   const editLoggedUser = useStore((state) => state.editLoggedUser);
-  if (loggedUser) {
+  const isAuth = useStore((state) => state.isUserAuth());
+  if (isAuth && loggedUser) {
     (username = loggedUser.username), (email = loggedUser.email), (about = loggedUser.about);
   }
 
@@ -56,7 +57,7 @@ export const RegisterUser = (props: propsShareForm) => {
   return (
     <div className={classNames(customStyle)}>
       <div className="title">
-        <h2>{loggedUser ? `Изменения профиля пользователя` : `Регистрация нового пользователя`}</h2>
+        <h2>{isAuth ? `Изменения профиля пользователя` : `Регистрация нового пользователя`}</h2>
       </div>
       <Formik
         initialValues={{ username: username, email: email, password: '', about: about }}
