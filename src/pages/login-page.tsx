@@ -9,7 +9,7 @@ export const LoginPage = () => {
   const isUserAuth = tokenUser || tokenAdmin;
   return (
     <div>
-      {!isUserAuth && <h1>Логин/регистрация</h1>}
+      {!isUserAuth && <h1>Логин или регистрация</h1>}
 
       {isUserAuth?.length ? (
         <>

@@ -12,23 +12,10 @@ import { AddProductForm } from 'src/stories/components/product/AddProductForm';
 import { ProductCard } from 'src/stories/components/cards-product/ProductCard';
 import { RegisterUser } from 'src/stories/components/profle/RegisterUser';
 import { useUserAuth } from 'src/components/hooks/isAuth';
-import { useUserStore } from 'src/mock-data/mock-profile';
+import { useGetExternalUser } from 'src/mock-data/mock-profile';
+import { useStore } from 'src/store/state';
 
 function App() {
-  const isUserAuth = useUserAuth();
-  useUserStore();
-  const AppHeader = () => {
-    return (
-      <Header>
-        <NavLink to={'/'}>
-          <Logo />
-        </NavLink>
-        <NavLink to={'products'}>Товары</NavLink>
-        <NavLink to={'bucket'}>Корзина</NavLink>
-        <NavLink to={'auth'}>{isUserAuth ? `Профиль` : `Вход`}</NavLink>
-      </Header>
-    );
-  };
   return (
     <div className="App">
       <AppHeader />
@@ -50,3 +37,18 @@ function App() {
 }
 
 export default App;
+const AppHeader = () => {
+  const isUserAuth = useUserAuth();
+  const loggedUser = useStore((state) => state.loggedUser);
+  useGetExternalUser();
+  return (
+    <Header>
+      <NavLink to={'/'}>
+        <Logo />
+      </NavLink>
+      <NavLink to={'products'}>Товары</NavLink>
+      <NavLink to={'bucket'}>Корзина</NavLink>
+      <NavLink to={'auth'}>{isUserAuth ? loggedUser?.username : `Вход`}</NavLink>
+    </Header>
+  );
+};

@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import * as process from 'process';
 import { useStore } from 'src/store/state';
-import { ExternalUserProfile } from 'src/types/userProfile';
+import { ExternalUserProfile, userProfile } from 'src/types/userProfile';
+import { createUserHelper } from 'src/common-functions/userHelper';
 
-export const useUserStore = (userId?: number) => {
+export const useGetExternalUser = (userId?: number) => {
   const [user, setUser] = useState<ExternalUserProfile>(null);
   const idx = Math.floor(Math.random() * 99) + 1;
   const { setExternalUser } = useStore();
+  const { newUser } = useCreateUser(user);
 
   useEffect(() => {
     const fetchUserById = async () => {
@@ -23,7 +25,21 @@ export const useUserStore = (userId?: number) => {
         setUser(null);
       }
     };
+
     fetchUserById();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  return { newUser };
+};
+export const useCreateUser = (userData: ExternalUserProfile) => {
+  let newUser: userProfile;
+  const editLoggedUser = useStore((state) => state.editLoggedUser);
+  const setLoggedUser = useStore((state) => state.setLoggedUser);
+  useEffect(() => {
+    if (userData) {
+      newUser = createUserHelper(userData);
+      setLoggedUser(newUser);
+    }
+  }, [userData]);
+  return { newUser, editLoggedUser };
 };

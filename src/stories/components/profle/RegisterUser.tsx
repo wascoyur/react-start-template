@@ -11,6 +11,7 @@ export const RegisterUser = (props: propsShareForm) => {
   const { customStyle = 'default-style' } = props;
   const loggedUser = useStore((store) => store.loggedUser);
   const setLoggedUser = useStore((state) => state.setLoggedUser);
+  const editLoggedUser = useStore((state) => state.editLoggedUser);
   if (loggedUser) {
     (username = loggedUser.username), (email = loggedUser.email), (about = loggedUser.about);
   }
@@ -54,12 +55,17 @@ export const RegisterUser = (props: propsShareForm) => {
 
   return (
     <div className={classNames(customStyle)}>
-      <div className="title">{loggedUser ? `Изменения профиля пользователя` : `Регистрация нового пользователя`}</div>
+      <div className="title">
+        <h2>{loggedUser ? `Изменения профиля пользователя` : `Регистрация нового пользователя`}</h2>
+      </div>
       <Formik
         initialValues={{ username: username, email: email, password: '', about: about }}
         onSubmit={(user) => {
-          console.log({ user });
-          setLoggedUser(user as unknown as userProfile);
+          if (loggedUser) {
+            editLoggedUser(user as unknown as userProfile);
+          } else {
+            setLoggedUser(user as unknown as userProfile);
+          }
         }}
         validate={validate}
       >

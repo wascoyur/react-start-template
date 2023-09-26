@@ -6,19 +6,15 @@ import { userProfile, typeUserProfileCardProps, ExternalUserProfile } from 'src/
 import { RegisterUser } from 'src/stories/components/profle/RegisterUser';
 import { useStore } from 'src/store/state';
 import { createUserHelper } from 'src/common-functions/userHelper';
+import { useCreateUser } from 'src/mock-data/mock-profile';
 
 export const ProfileUser = () => {
   // const [toChangePass, setToChangePass] = useState<boolean>(false);
   const [toChangeProfile, setToChangeProfile] = useState<boolean>(false);
-  // const [user, setUser] = useState<userProfile | null>(null);
   const userExternal = useStore((store) => store.userExternal);
-  const setLoggedUser = useStore((store) => store.setLoggedUser);
   const loggedUser = useStore((store) => store.loggedUser);
 
-  const newUser = useCreateUser(userExternal);
-  useEffect(() => {
-    userExternal && !loggedUser && setLoggedUser(newUser);
-  }, [newUser, loggedUser]);
+  useCreateUser(userExternal);
 
   const handleProfile = () => {
     setToChangeProfile(true);
@@ -68,15 +64,4 @@ export const ProfileCard: React.FC<typeUserProfileCardProps> = ({ user, onEditPr
       <button onClick={onEditProfile}>Редактировать профиль</button>
     </div>
   );
-};
-
-export const useCreateUser = (userData: ExternalUserProfile) => {
-  const [newUser, setNewUser] = useState<userProfile | undefined>();
-  useEffect(() => {
-    if (userData) {
-      const n = createUserHelper(userData);
-      setNewUser(n);
-    }
-  }, [userData]);
-  return newUser;
 };
