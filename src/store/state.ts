@@ -3,13 +3,14 @@ import { immer } from 'zustand/middleware/immer';
 import { ExternalUserProfile, userProfile } from 'src/types/userProfile';
 import { ApiResponseProduct, TypeProduct } from 'src/types/typeProduct';
 
+type BucketItem = { productId: number; count: number };
 type State = {
   tokenUser: string;
   tokenAdmin: string;
   userExternal: ExternalUserProfile;
   loggedUser: userProfile;
   rawProducts: Array<ApiResponseProduct>;
-  bucket: Array<TypeProduct>;
+  bucket: Array<BucketItem>;
   products: Array<TypeProduct>;
 };
 type Action = {
@@ -20,7 +21,7 @@ type Action = {
   setExternalUser: (user: State['userExternal']) => void;
   setLoggedUser: (user: State['loggedUser']) => void;
   editLoggedUser: (user: State['loggedUser']) => void;
-  setBucket: (product: TypeProduct) => void;
+  setBucket: (product: BucketItem) => void;
   getProductById: (idProduct: number) => TypeProduct;
   setProducts: (products: Array<TypeProduct>) => void;
   isUserAuth: () => boolean;
@@ -53,9 +54,20 @@ export const useStore = create(
         state.loggedUser.about = user.about;
       });
     },
-    setBucket: (product: TypeProduct) =>
+    setBucket: (bucketItem: BucketItem) =>
       set((state) => {
-        state.bucket = [...state.bucket, product];
+        if (!get().bucket) {
+          state.bucket = new Array(bucketItem);
+          return;
+        }
+        const exsistingProductIndex = get().bucket.findIndex((item) => item.productId === bucketItem.productId);
+        if (exsistingProductIndex !== -1) {
+          // Если продукт с таким productId уже существует, увеличиваем его count
+          state.bucket[exsistingProductIndex].count = get().bucket[exsistingProductIndex].count + bucketItem.count;
+        } else {
+          // Если продукта с таким productId нет, добавляем его в коллекцию
+          state.bucket.push(bucketItem);
+        }
       }),
     setProducts: (products: Array<TypeProduct>) =>
       set((state) => {

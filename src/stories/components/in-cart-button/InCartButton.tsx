@@ -8,19 +8,21 @@ type propsInCartButton = {
 };
 export const InCartButton = (props: propsInCartButton) => {
   const { productId } = props;
-  const toBucket = useStore((state) => state.setBucket);
-
+  const addToBucket = useStore((state) => state.setBucket);
+  const [count, setCount] = useState(0);
   const InCart = () => {
     return (
       <div className="button-in-cart">
-        <Button label="В корзину" backgroundColor="#1ea7fd" />
+        <button onClick={() => addToBucket({ productId, count })} disabled={count < 1}>
+          В корзину
+        </button>
       </div>
     );
   };
 
   const Input = () => {
     const backgroundColor = '#1ea7fd';
-    const [count, setCount] = useState(0);
+
     return (
       <div className="card-count-input">
         <Button label={'-'} backgroundColor={backgroundColor} onClick={() => setCount(count - 1)} />

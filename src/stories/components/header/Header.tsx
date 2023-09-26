@@ -22,13 +22,14 @@ export const AppHeader = () => {
   useGetExternalUser();
   const isUserAuth = useUserAuth();
   const loggedUser = useStore((state) => state.loggedUser);
+  const bucket = useStore((state) => state.bucket);
   return (
     <Header>
       <NavLink to={'/'}>
         <Logo />
       </NavLink>
       <NavLink to={'products'}>Товары</NavLink>
-      <NavLink to={'bucket'}>Корзина</NavLink>
+      <NavLink to={'bucket'}>Корзина Всего {bucket?.length || 0} товаров</NavLink>
       <NavLink to={'auth'}>{isUserAuth ? loggedUser?.username : `Вход`}</NavLink>
     </Header>
   );
