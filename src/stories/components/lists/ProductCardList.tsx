@@ -4,12 +4,13 @@ import { ProductCard } from 'src/stories/components/cards-product/ProductCard';
 
 export const ProductCardList = () => {
   const products = useStore((state) => state.products);
+  const idsList = products && products.map((p) => p.id);
   const ShortList = (): React.ReactNode => (
-    <div>
-      {products ? (
-        products.map((p) => (
-          <div key={p.id} className="default-style">
-            <ProductCard />
+    <div className="card-list">
+      {idsList ? (
+        idsList.map((p) => (
+          <div key={p}>
+            <ProductCard id={p} />
           </div>
         ))
       ) : (
@@ -18,11 +19,9 @@ export const ProductCardList = () => {
     </div>
   );
   return (
-    <div>
+    <div className="product-card-list">
       <h3>Список товаров</h3>
-      <div>
-        <ShortList />
-      </div>
+      <ShortList />
     </div>
   );
 };

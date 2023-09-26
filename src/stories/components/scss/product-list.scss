@@ -21,3 +21,22 @@
     .icon-action{
     }
 }
+.product-card-list {
+    display: grid;
+    padding: 2rem;
+
+    h3 {
+        margin-bottom: 20px;
+    }
+
+    .card-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Гибкая сетка с автоматическим изменением колонок */
+        gap: 40px; /* Расстояние между карточками */
+        justify-items: center; /* Центрирование по горизонтали */
+
+        /* Если вы хотите, чтобы карточки имели фиксированную ширину и центрировались по горизонтали, используйте следующее правило:
+        justify-content: center;
+        */
+    }
+}

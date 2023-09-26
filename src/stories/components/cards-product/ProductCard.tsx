@@ -5,11 +5,11 @@ import { useParams } from 'react-router-dom';
 import Loader from 'src/stories/components/share/Loader';
 import '../scss/product-card.scss';
 
-export const ProductCard = () => {
+export const ProductCard = (props: { id?: number }) => {
   const { productId } = useParams();
   const [loading, setLoading] = useState<boolean>(true); // Изначально устанавливаем loading в true
   const { getProductById, addToBucket } = useGetProduct();
-  const product = getProductById(parseInt(productId));
+  const product = getProductById(parseInt(String(parseInt(productId) || props.id)));
   const { desc, name, price, category } = product || {}; // Добавляем проверку на существование product
 
   useEffect(() => {
@@ -50,7 +50,7 @@ export const ProductCard = () => {
             <Description />
             <Price />
             <div className="in-cart-wrapper">
-              <InCartButton countProducts={setCountProducts} />
+              <InCartButton productId={parseInt(productId) || props.id} />
             </div>
           </div>
         </>

@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Button } from '../button/Button';
 import '../scss/in-cart-button.scss';
+import { useStore } from 'src/store/state';
 
 type propsInCartButton = {
-  countProducts: (count: number) => number;
+  productId: number;
 };
 export const InCartButton = (props: propsInCartButton) => {
-  const { countProducts } = props;
+  const { productId } = props;
+  const toBucket = useStore((state) => state.setBucket);
 
   const InCart = () => {
     return (
