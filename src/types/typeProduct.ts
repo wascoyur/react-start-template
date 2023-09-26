@@ -10,3 +10,16 @@ export type TypeProduct = {
   img_url: string;
   price?: number;
 };
+export interface ApiResponseProduct {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: string[];
+}

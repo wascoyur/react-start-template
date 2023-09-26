@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from '../button/Button';
-import './in-cart-button.scss';
+import '../scss/in-cart-button.scss';
 
 type propsInCartButton = {
   countProducts: (count: number) => number;

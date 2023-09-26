@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import './layout.scss';
+import '../scss/layout.scss';
 
 export const Layout = (children: PropsWithChildren) => {
   const setActive = (isActive: boolean) => {

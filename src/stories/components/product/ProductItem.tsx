@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
-import './product-list.scss';
+import '../scss/product-list.scss';
 import { useStore } from 'src/store/state';
 import { Link } from 'react-router-dom';
 import { TypeProduct } from 'src/types/typeProduct';

@@ -1,5 +1,4 @@
-import { ApiResponseProduct } from 'src/homeworks/homework-5/ProductList';
-import { TypeProduct } from 'src/types/typeProduct';
+import { ApiResponseProduct, TypeProduct } from 'src/types/typeProduct';
 
 export const createProductHelper = (response: ApiResponseProduct[]) => {
   const res = response.map((cur, index) => {

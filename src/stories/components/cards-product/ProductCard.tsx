@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { InCartButton } from '../in-cart-button/InCartButton';
-import './product-card.scss';
 import { useStore } from 'src/store/state';
 import { useParams } from 'react-router-dom';
 import Loader from 'src/stories/components/share/Loader';
+import '../scss/product-card.scss';
 
 export const ProductCard = () => {
   const { productId } = useParams();

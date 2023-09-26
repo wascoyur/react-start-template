@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import cn from 'clsx';
 import { sum } from './sum';
-import './button.css';
+import '../scss/button.css';
 
 interface ButtonProps {
   primary?: boolean;

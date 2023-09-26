@@ -1,8 +1,7 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
-import { ApiResponseProduct } from 'src/homeworks/homework-5/ProductList';
 import { ExternalUserProfile, userProfile } from 'src/types/userProfile';
-import { TypeProduct } from 'src/types/typeProduct';
+import { ApiResponseProduct, TypeProduct } from 'src/types/typeProduct';
 
 type State = {
   tokenUser: string;

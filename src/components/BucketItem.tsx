@@ -1,6 +1,6 @@
 import React from 'react';
 import { DeleteIcon } from 'src/icons/DeleteIcon';
-import './bucket-item.scss';
+import '../stories/components/scss/bucket-item.scss';
 
 type bucketItem = {
   itemName: string;
