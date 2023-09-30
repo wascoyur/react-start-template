@@ -37,4 +37,3 @@ function App() {
 export default App;
 
 //todo: 2) Нет модалки добавления/редактирования товара
-//todo: 5) token не записывается в local storage.

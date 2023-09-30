@@ -14,7 +14,7 @@ export const PageBucket = () => {
     }, 0);
   const totalFee = () =>
     bucket.reduce((acc, item) => {
-      const { price } = getProductById(item.productId);
+      const { price } = getProductById(item?.productId);
       return acc + item.count * price;
     }, 0);
   const ProductsInBucket = () => {
