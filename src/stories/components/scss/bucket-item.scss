@@ -5,6 +5,7 @@
 
     .bucket-item {
         display: grid;
+        margin: 1rem 0.5rem;
         grid-template-columns: 14fr 1fr;;
         grid-gap: 1rem; // Adjust as needed
         align-items: center;

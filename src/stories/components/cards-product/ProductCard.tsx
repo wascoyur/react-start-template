@@ -8,9 +8,9 @@ import '../scss/product-card.scss';
 export const ProductCard = (props: { id?: number }) => {
   const { productId } = useParams();
   const [loading, setLoading] = useState<boolean>(true); // Изначально устанавливаем loading в true
-  const { getProductById, addToBucket } = useGetProduct();
+  const { getProductById } = useProcessProduct();
   const product = getProductById(parseInt(String(parseInt(productId) || props.id)));
-  const { desc, name, price, category } = product || {}; // Добавляем проверку на существование product
+  const { desc, name, category } = product || {}; // Добавляем проверку на существование product
 
   useEffect(() => {
     if (product) {
@@ -18,23 +18,24 @@ export const ProductCard = (props: { id?: number }) => {
     }
   }, [product]);
 
-  const setCountProducts = (count: number) => {
-    return count;
-  };
-
   const Title = () => {
     return <div className="product-card-title">{name}</div>;
   };
   const Description = () => {
-    return <div className="product-card-description">{desc || `Dedcription Product`}</div>;
+    return <div className="product-card-description">{desc || `Description Product`}</div>;
   };
 
   const Category = () => {
     return <div className="product-card-category">{category?.name || ''}</div>; // Добавляем проверку на существование category и name
   };
 
-  const Price = () => {
-    return <div className="product-card-price">{price}р.</div>;
+  const ProductCardField = (props: { name: string | React.ReactNode; value: number | string }) => {
+    return (
+      <div className="product-card-fee">
+        <div className="product-card-name">{props.name}</div>
+        <div className="product-card-value">{props.value}р.</div>
+      </div>
+    );
   };
   //todo:реализовать счетчик товаров в корзине
   return (
@@ -48,7 +49,7 @@ export const ProductCard = (props: { id?: number }) => {
           <div className="product-info-wrapper">
             <Category />
             <Description />
-            <Price />
+            <ProductCardField name={`Цена за шт.`} value={product.price} />
             <div className="in-cart-wrapper">
               <InCartButton productId={parseInt(productId) || props.id} />
             </div>
@@ -67,7 +68,7 @@ export const ProductImage = (props: { img_url: string }) => {
   );
 };
 
-const useGetProduct = () => {
+const useProcessProduct = () => {
   const getProductById = useStore((state) => state.getProductById);
   const addToBucket = useStore((state) => state.setBucket);
   return { getProductById, addToBucket };

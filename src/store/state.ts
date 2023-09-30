@@ -2,8 +2,8 @@ import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import { ExternalUserProfile, userProfile } from 'src/types/userProfile';
 import { ApiResponseProduct, TypeProduct } from 'src/types/typeProduct';
+import { BucketItem } from 'src/types/typeStore';
 
-type BucketItem = { productId: number; count: number };
 type State = {
   tokenUser: string;
   tokenAdmin: string;
@@ -25,6 +25,8 @@ type Action = {
   getProductById: (idProduct: number) => TypeProduct;
   setProducts: (products: Array<TypeProduct>) => void;
   isUserAuth: () => boolean;
+  getBucket: () => { product: TypeProduct; count: number }[];
+  removeItemBucketById: (id: number) => void;
 };
 export const useStore = create(
   immer<State & Action>((set, get) => ({
@@ -42,6 +44,9 @@ export const useStore = create(
         tokenUser: null,
         tokenAdmin: null,
       })),
+    isUserAuth: () => {
+      return Boolean((get().tokenUser || get().tokenAdmin) && Boolean(get().loggedUser?.id));
+    },
     setRawProducts: (arr: Array<ApiResponseProduct>) => set(() => ({ rawProducts: arr })),
     setExternalUser: (user: ExternalUserProfile) => set(() => ({ userExternal: user })),
     setLoggedUser: (user: userProfile) =>
@@ -78,8 +83,18 @@ export const useStore = create(
       const allProducts = get().products || new Array<TypeProduct>();
       return allProducts.filter((p) => p.id == id)[0];
     },
-    isUserAuth: () => {
-      return Boolean((get().tokenUser || get().tokenAdmin) && Boolean(get().loggedUser?.id));
+    getBucket: () => {
+      const bucket = get()?.bucket || [];
+      const products = bucket.map((p) => {
+        return { product: get().getProductById(p.productId), count: p.count };
+      });
+      return products;
     },
+    removeItemBucketById: (id: number) =>
+      set((state) => {
+        const newBucket: BucketItem[] = state.bucket.filter((i) => i.productId !== id);
+        console.log({ newBucket });
+        state.bucket = newBucket;
+      }),
   }))
 );
