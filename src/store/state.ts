@@ -101,7 +101,12 @@ export const useStore = create(
     })),
     {
       name: `tokens`,
-      partialize: (state) => ({ tokenUser: state.tokenUser, tokenAdmin: state.tokenAdmin, bucket: state.bucket }),
+      partialize: (state) => ({
+        tokenUser: state.tokenUser,
+        tokenAdmin: state.tokenAdmin,
+        bucket: state.bucket,
+        loggedUser: state.loggedUser,
+      }),
     }
   )
 );
