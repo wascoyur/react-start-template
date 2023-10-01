@@ -95,7 +95,6 @@ export const useStore = create(
       removeItemBucketById: (id: number) =>
         set((state) => {
           const newBucket: BucketItem[] = state.bucket.filter((i) => i.productId !== id);
-          console.log({ newBucket });
           state.bucket = newBucket;
         }),
     })),
