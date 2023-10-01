@@ -1,13 +1,20 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
 import { BucketItem } from 'src/components/BucketItem';
 import { useStore } from 'src/store/state';
+import { useNavigate } from 'react-router-dom';
 
 export const PageBucket = () => {
-  const [bucket, removeItemBucketById, getProductById] = useStore((state) => [
+  const [bucket, removeItemBucketById, getProductById, isUserAuth] = useStore((state) => [
     state.bucket,
     state.removeItemBucketById,
     state.getProductById,
+    state.isUserAuth,
   ]);
+  const navigate = useNavigate();
+  useEffect(() => {
+    !isUserAuth() && navigate('/auth');
+  }, []);
   const totalCount = () =>
     bucket.reduce((acc, i) => {
       return acc + i.count;
@@ -28,11 +35,17 @@ export const PageBucket = () => {
     return <div>{list()}</div>;
   };
   return (
-    <>
-      <div>
-        В корзине находится {bucket ? totalCount() : 0} товаров на общую сумму {bucket ? totalFee() : 0} руб.
-      </div>
-      <div className="bucket-list">{bucket?.length > 0 ? <ProductsInBucket /> : <div>Корзина пуста</div>}</div>
-    </>
+    <div className="bucket-list">
+      {bucket?.length > 0 ? (
+        <div>
+          <div>
+            В корзине находится {bucket ? totalCount() : 0} товаров на общую сумму {bucket ? totalFee() : 0} руб.
+          </div>
+          <ProductsInBucket />{' '}
+        </div>
+      ) : (
+        <div>Корзина пуста</div>
+      )}
+    </div>
   );
 };

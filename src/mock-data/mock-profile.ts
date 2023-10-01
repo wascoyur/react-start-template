@@ -12,7 +12,7 @@ export const useGetExternalUser = (userId?: number) => {
   useEffect(() => {
     const fetchUserById = async () => {
       try {
-        const response = await fetch(`$https://dummyjson.com/users/${userId ? userId : idx}`);
+        const response = await fetch(`https://dummyjson.com/users/${userId ? userId : idx}`);
         if (!response.ok) {
           throw new Error('Ошибка при получении данных');
         }
