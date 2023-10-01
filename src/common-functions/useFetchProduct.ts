@@ -9,7 +9,7 @@ export const useFetchProduct = () => {
   const setProducts = useStore((state) => state.setProducts);
   const [loading, setLoading] = useState<boolean>(true);
   const getProducts = async () => {
-    await fetch(`${process.env.API_URL}/products`)
+    await fetch(`https://dummyjson.com/products`)
       .then((r) => {
         return r.json();
       })
